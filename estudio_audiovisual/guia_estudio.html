@@ -1,0 +1,2020 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<title>Guía de Estudio Audiovisual — The Walking Bowmasters</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+:root{
+  --ink:#0b0b0b; --ink2:#3d3c39; --muted:#6f6e69; --line:#e4e3df; --paper:#ffffff; --soft:#f6f5f1;
+  --night:#1c1a21; --night2:#2a2730; --blue:#2a78d6; --orange:#eb6834; --aqua:#1baf7a; --yellow:#eda100;
+  --red:#e34948; --violet:#6250d6; --green:#008300;
+  --sans:'Inter','Segoe UI',system-ui,sans-serif; --mono:'JetBrains Mono','Consolas',monospace;
+}
+@page{ size:A4; margin:19mm 15mm 17mm 15mm; }
+@page uml{ size:A4 landscape; margin:14mm 12mm 14mm 12mm; }
+html{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+body{ font-family:var(--sans); color:var(--ink); background:var(--paper); font-size:9.6pt; line-height:1.52; margin:0; }
+h1,h2,h3,h4{ font-weight:800; letter-spacing:-0.01em; line-height:1.2; break-after:avoid; }
+h1{ font-size:24pt; margin:0 0 4mm; }
+h2{ font-size:14.5pt; margin:7mm 0 2.5mm; padding-bottom:1.5mm; border-bottom:2px solid var(--ink); }
+h3{ font-size:11.2pt; margin:5mm 0 2mm; color:var(--ink); }
+h4{ font-size:9.8pt; margin:3mm 0 1.5mm; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+p{ margin:0 0 2.4mm; } a{ color:var(--blue); text-decoration:none; }
+code{ font-family:var(--mono); font-size:8.4pt; background:#f0efea; padding:.2mm 1.1mm; border-radius:1mm; color:#2b2a33; }
+.chapter{ break-before:page; }
+.chapter-head{ background:var(--night); color:#fff; border-radius:4mm; padding:9mm 9mm 8mm; margin-bottom:6mm; position:relative; overflow:hidden; }
+.chapter-head .num{ font-size:9pt; font-weight:700; letter-spacing:.18em; color:var(--yellow); text-transform:uppercase; }
+.chapter-head h1{ color:#fff; margin:2mm 0 2mm; }
+.chapter-head p{ color:#cfcbd6; margin:0; max-width:150mm; }
+.chapter-head::after{ content:""; position:absolute; right:-18mm; top:-18mm; width:70mm; height:70mm; border-radius:50%;
+  background:radial-gradient(circle, rgba(235,104,52,.55), rgba(235,104,52,0) 70%); }
+table{ width:100%; border-collapse:collapse; margin:2mm 0 4mm; font-size:8.6pt; break-inside:auto; }
+th{ text-align:left; background:var(--night2); color:#fff; font-weight:600; padding:1.8mm 2.2mm; }
+td{ padding:1.7mm 2.2mm; border-bottom:1px solid var(--line); vertical-align:top; }
+tr{ break-inside:avoid; } tbody tr:nth-child(even) td{ background:#faf9f6; }
+.card{ border:1px solid var(--line); border-left:4px solid var(--blue); border-radius:2.5mm; padding:3.5mm 4.5mm; margin:3mm 0;
+  background:var(--soft); break-inside:avoid; }
+.card.orange{ border-left-color:var(--orange);} .card.aqua{ border-left-color:var(--aqua);} .card.yellow{ border-left-color:var(--yellow);}
+.card.red{ border-left-color:var(--red);} .card.violet{ border-left-color:var(--violet);} .card.dark{ background:var(--night); color:#eee; border-color:var(--night); border-left-color:var(--yellow);}
+.card h3,.card h4{ margin-top:0; }
+.card.dark h3{ color:#fff; } .card.dark code{ background:#34303b; color:#ffd88a; }
+.grid2{ display:grid; grid-template-columns:1fr 1fr; gap:4mm; } .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:3.5mm; }
+.grid2>*, .grid3>*{ break-inside:avoid; }
+.pill{ display:inline-block; font-size:7.6pt; font-weight:700; padding:.4mm 2mm; border-radius:10mm; background:var(--night2); color:#fff; margin-right:1mm; }
+.pill.blue{background:var(--blue);} .pill.orange{background:var(--orange);} .pill.aqua{background:var(--aqua);} .pill.red{background:var(--red);}
+figure{ margin:3mm 0 4mm; break-inside:avoid; }
+.fig img{ width:100%; display:block; border-radius:2mm; border:1px solid var(--line); }
+.fig figcaption{ font-size:8pt; color:var(--muted); margin-top:1.5mm; }
+.fig.chart img{ border:none; }
+.code{ border-radius:2.5mm; overflow:hidden; background:#1e1c24; border:1px solid #2e2b36; }
+.code figcaption{ display:flex; gap:3mm; align-items:center; background:#2a2731; padding:1.6mm 3mm; font-size:7.6pt; color:#b8b3c4; }
+.code figcaption .file{ font-family:var(--mono); color:#ffd88a; font-weight:600; }
+.code figcaption a{ margin-left:auto; color:#8fc3ff; }
+.code-title{ color:#fff; font-size:8.2pt; font-weight:600; padding:1.6mm 3mm 0; }
+.code-body{ display:flex; }
+.code pre{ margin:0; font-family:var(--mono); font-size:7.5pt; line-height:1.5; padding:2.2mm 3mm; white-space:pre-wrap; }
+.code pre.ln{ color:#5f5a6b; text-align:right; padding-right:2mm; border-right:1px solid #34303b; user-select:none; white-space:pre; }
+.code pre.src{ color:#e7e3ee; flex:1; }
+.code .k{ color:#ff8fb0; font-weight:600;} .code .t{ color:#7fd3ff;} .code .s{ color:#b5e48c;} .code .n{ color:#ffc56b;}
+.code .c{ color:#8a8499; font-style:italic;} .code .a{ color:#c5a3ff;}
+.code-note{ background:#2a2731; color:#d9d4e3; font-size:7.8pt; padding:1.8mm 3mm; border-top:1px solid #3a3644; }
+.mermaid-box{ break-inside:avoid; text-align:center; margin:3mm 0; }
+.mermaid-box svg{ max-width:100% !important; height:auto; }
+.mermaid-box.tall svg{ max-height:205mm; width:auto; }
+.mermaid-box.uml svg{ max-height:166mm; width:auto; }
+.mermaid-box.estado svg{ width:100% !important; max-height:70mm; }
+.mermaid-src{ display:none; }
+.uml-page{ page:uml; break-before:page; }
+.uml-page h2{ margin-top:0; }
+.legend{ display:flex; gap:5mm; flex-wrap:wrap; font-size:8pt; color:var(--ink2); margin:1mm 0 2mm; }
+.legend b{ font-family:var(--mono); color:var(--ink); }
+.qr{ display:inline-flex; flex-direction:column; align-items:center; gap:1mm; font-size:7.4pt; color:var(--ink2); text-align:center; }
+.qr img{ width:24mm; height:24mm; background:#fff; padding:1.5mm; border-radius:2mm; border:1px solid var(--line); }
+.qr-row{ display:flex; gap:6mm; flex-wrap:wrap; margin:3mm 0; break-inside:avoid; }
+.kpi{ background:var(--soft); border-radius:2.5mm; padding:3mm 4mm; border:1px solid var(--line); }
+.kpi .v{ font-size:16pt; font-weight:800; } .kpi .l{ font-size:7.8pt; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+.steps{ counter-reset:paso; display:grid; gap:2.6mm; }
+.step{ display:grid; grid-template-columns:11mm 1fr; gap:3mm; align-items:start; break-inside:avoid; }
+.step::before{ counter-increment:paso; content:counter(paso); width:11mm; height:11mm; border-radius:50%; background:var(--night);
+  color:var(--yellow); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:12pt; }
+.step .body{ background:var(--soft); border:1px solid var(--line); border-radius:2.5mm; padding:2.5mm 3.5mm; }
+.arrow-down{ text-align:center; color:var(--muted); font-size:12pt; line-height:1; margin:-1mm 0; }
+.sb td:first-child{ width:34%; } .sb td:nth-child(2){ width:24%; } .sb td{ font-size:8.3pt; }
+.sb .t{ font-family:var(--mono); font-size:7.6pt; color:var(--orange); font-weight:600; display:block; }
+.say{ font-style:italic; color:#2b2a33; }
+.q{ break-inside:avoid; border:1px solid var(--line); border-radius:2.5mm; margin:0 0 3mm; overflow:hidden; }
+.q .qh{ background:var(--night); color:#fff; padding:2mm 3.5mm; font-weight:700; font-size:9.2pt; }
+.q .qh span{ color:var(--yellow); margin-right:2mm; }
+.q .qa{ padding:2.5mm 3.5mm; } .q .src{ font-size:7.8pt; color:var(--muted); margin-top:1.5mm; }
+.check{ list-style:none; padding:0; margin:0; } .check li{ padding:1.6mm 0 1.6mm 8mm; position:relative; border-bottom:1px dashed var(--line); break-inside:avoid; }
+.check li::before{ content:""; position:absolute; left:0; top:2mm; width:4mm; height:4mm; border:1.6px solid var(--ink); border-radius:1mm; }
+.toc a{ color:var(--ink); display:flex; justify-content:space-between; padding:1.5mm 0; border-bottom:1px dotted #cfcdc6; }
+.toc .sub{ padding-left:6mm; color:var(--ink2); font-size:9pt; }
+blockquote{ margin:3mm 0; padding:3mm 4.5mm; border-left:4px solid var(--yellow); background:#fff8e6; border-radius:0 2.5mm 2.5mm 0; font-style:italic; break-inside:avoid; }
+.audio-table td:first-child{ font-family:var(--mono); font-weight:600; }
+.small{ font-size:8pt; color:var(--muted); }
+.warn{ border-left-color:var(--red); background:#fff3f2; }
+/* portada */
+.cover{ height:258mm; background:var(--night); color:#fff; border-radius:5mm; padding:14mm 13mm; position:relative; overflow:hidden;
+  display:flex; flex-direction:column; break-after:page; }
+.cover::before{ content:""; position:absolute; inset:auto -40mm -60mm auto; width:200mm; height:200mm; border-radius:50%;
+  background:radial-gradient(circle at 40% 40%, rgba(235,104,52,.75), rgba(227,73,72,.25) 45%, rgba(28,26,33,0) 70%); }
+.cover::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:62mm;
+  background:repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 9mm, transparent 9mm 15mm); clip-path:polygon(0 60%,8% 45%,14% 52%,22% 30%,30% 42%,38% 20%,46% 38%,55% 25%,63% 46%,72% 28%,80% 44%,90% 32%,100% 50%,100% 100%,0 100%); }
+.cover .kicker{ font-weight:700; letter-spacing:.2em; text-transform:uppercase; font-size:8.5pt; color:var(--yellow); }
+.cover h1{ font-size:36pt; line-height:1.02; margin:6mm 0 3mm; color:#fff; letter-spacing:-0.02em; }
+.cover h1 em{ font-style:normal; color:var(--orange); }
+.cover .sub{ font-size:12pt; color:#d8d3df; max-width:140mm; }
+.cover .spec{ position:relative; z-index:2; margin-top:auto; display:grid; grid-template-columns:1fr 34mm; gap:7mm; align-items:end; }
+.cover table{ font-size:8.2pt; margin:0; } .cover th{ background:rgba(255,255,255,.08); }
+.cover td{ border-bottom:1px solid rgba(255,255,255,.12); color:#efeaf5; background:transparent !important; padding:1.3mm 2mm; }
+.cover .qr img{ width:32mm; height:32mm; } .cover .qr span{ color:#d8d3df; }
+.cover .tags{ margin:5mm 0 0; display:flex; gap:2mm; flex-wrap:wrap; position:relative; z-index:2; }
+</style></head><body>
+
+<section class="cover">
+  <div class="kicker">Dossier de estudio avanzado · Lógica de Programación II</div>
+  <h1>The Walking<br><em>Bowmasters</em></h1>
+  <div class="sub">Guía de estudio audiovisual para expositores — Edición POO Modular. Cada línea de código,
+  cada parábola, cada sonido sintetizado y cada pregunta difícil, explicados para sustentar con total seguridad.</div>
+  <div class="tags"><span class="pill orange">Java SE · Swing / AWT</span><span class="pill blue">34 archivos .java</span>
+  <span class="pill aqua">9 paquetes + clase principal</span><span class="pill red">4,489 líneas</span></div>
+  <div class="spec">
+    <table>
+      <tr><th colspan="2">Ficha técnica del proyecto</th></tr>
+      <tr><td>Clase principal</td><td><code>WalkingBowmastersPOO extends JPanel implements ActionListener</code></td></tr>
+      <tr><td>Resolución lógica</td><td>1280 × 720 (<code>ANCHO_VIRTUAL</code> × <code>ALTO_VIRTUAL</code>) escalado a cualquier ventana</td></tr>
+      <tr><td>Bucle de juego</td><td><code>new Timer(16, this)</code> ≈ 60 FPS · <code>dt ≤ 0.05 s</code></td></tr>
+      <tr><td>Física</td><td><code>GRAVEDAD_BASE = 540.0</code> px/s² · viento ±125 px/s² · <code>Y_SUELO = 582</code></td></tr>
+      <tr><td>Audio</td><td>PCM 44 100 Hz · 16-bit · mono · 11 efectos · <code>MAX_VOCES = 10</code></td></tr>
+      <tr><td>Modos</td><td>Hordas (Modo 1) · Duelo 1v1 (Modo 2) · Armería (Modo 3)</td></tr>
+      <tr><td>Recursos externos</td><td>Ninguno: gráficos y sonidos 100 % procedurales</td></tr>
+    </table>
+    <a class="qr" href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II"><img src="qr/qr_repo.svg" alt="QR Repositorio en GitHub"><span>Repositorio en GitHub</span></a>
+  </div>
+</section>
+<section>
+  <h2 style="margin-top:0">Cómo usar este dossier</h2>
+  <div class="grid2">
+    <div class="card"><h4>Para estudiar</h4><p>Lee un capítulo por sesión. Cada afirmación técnica trae el <b>archivo, la clase y el
+    número de línea</b> real (enlaces “ver en GitHub ↗”). Los bloques de código no están reescritos: se extraen automáticamente
+    del código fuente cada vez que se ejecuta <code>generar_pdf_estudio.py</code>.</p></div>
+    <div class="card orange"><h4>Para ensayar</h4><p>El Capítulo 5 contiene el guion de 3 minutos, el storyboard de la demo
+    (pantalla · sonido · qué decir) y 10 preguntas difíciles con respuesta modelo. Los <b>11 sonidos .wav</b> en
+    <code>estudio_audiovisual/audio/</code> son idénticos muestra a muestra a los que sintetiza <code>GestorSonido</code>.</p></div>
+  </div>
+  <h2>Contenido</h2>
+  <div class="toc"><a href="#cap1"><b>Capítulo 1 — Mapa visual de la arquitectura</b></a><div class="sub">· Diagrama de clases UML</div><div class="sub">· Diagrama de objetos en runtime</div><div class="sub">· Dependencias entre paquetes</div><a href="#cap2"><b>Capítulo 2 — Radiografía del motor</b></a><div class="sub">· Librerías y APIs</div><div class="sub">· Game loop a 60 FPS</div><div class="sub">· Máquinas de estado</div><div class="sub">· Pipeline de renderizado 2D</div><a href="#cap3"><b>Capítulo 3 — Laboratorio de balística, IA y audio PCM</b></a><div class="sub">· Curvas balísticas</div><div class="sub">· Hitboxes y AoE</div><div class="sub">· IA estocástica</div><div class="sub">· Motor de audio</div><a href="#cap4"><b>Capítulo 4 — Los 6 pilares POO con evidencia</b></a><div class="sub">· Abstracción</div><div class="sub">· Encapsulamiento</div><div class="sub">· Herencia</div><div class="sub">· Polimorfismo</div><div class="sub">· Composición fuerte</div><div class="sub">· Agregación débil</div><a href="#cap5"><b>Capítulo 5 — Kit audiovisual de exposición</b></a><div class="sub">· Guion nivel 1</div><div class="sub">· Storyboard de la demo en vivo</div><div class="sub">· Banco de 10 preguntas</div><div class="sub">· Checklist de ensayo</div></div>
+  <div class="qr-row"><a class="qr" href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/armas/Arma.java"><img src="qr/qr_arma.svg" alt="QR armas/Arma.java"><span>armas/Arma.java</span></a><a class="qr" href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/Batallon.java"><img src="qr/qr_batallon.svg" alt="QR entidades/Batallon.java"><span>entidades/Batallon.java</span></a><a class="qr" href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/modos/ModoDueloBatallones.java"><img src="qr/qr_duelo.svg" alt="QR modos/ModoDueloBatallones.java"><span>modos/ModoDueloBatallones.java</span></a><a class="qr" href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/audio/GestorSonido.java"><img src="qr/qr_sonido.svg" alt="QR audio/GestorSonido.java"><span>audio/GestorSonido.java</span></a><a class="qr" href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/tree/main/estudio_audiovisual/audio"><img src="qr/qr_audio_dir.svg" alt="QR Carpeta de audios .wav"><span>Carpeta de audios .wav</span></a></div>
+  <p class="small">Fuente obligatoria: <code>GUIA_ARQUITECTURA_Y_EXPOSICION.md</code> + 34 archivos <code>.java</code> del proyecto.
+  Los QR apuntan a la rama <code>main</code> de <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II">github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II</a>.</p>
+</section>
+
+<section class="chapter" id="cap1">
+  <div class="chapter-head"><div class="num">Capítulo 1</div><h1>Mapa visual de la arquitectura</h1>
+  <p>Tres fotografías del mismo sistema: la estructura estática (clases), una instantánea en memoria (objetos) y el
+  acoplamiento entre carpetas (paquetes). Todos los diagramas son vectoriales: amplía sin perder nitidez.</p></div>
+  <h2>1.0 Cómo leer las flechas UML</h2>
+  <table><tr><th>Notación</th><th>Nombre</th><th>Significado en este proyecto</th><th>Ejemplo real</th></tr>
+  <tr><td><code>A &lt;|-- B</code></td><td>Herencia (<code>extends</code>)</td><td>B <i>es un</i> A y reutiliza su código</td><td><code>Combatiente &lt;|-- Batallon</code></td></tr>
+  <tr><td><code>I &lt;|.. C</code></td><td>Realización (<code>implements</code>)</td><td>C cumple el contrato de la interfaz I</td><td><code>Atacable &lt;|.. Combatiente</code></td></tr>
+  <tr><td><code>A "1" *-- "4" B</code></td><td>Composición fuerte ◆</td><td>B nace y muere dentro de A; nadie más lo ve</td><td><code>Batallon *-- MiembroEscuadron</code></td></tr>
+  <tr><td><code>A o-- B</code></td><td>Agregación débil ◇</td><td>A usa a B, pero B existe por su cuenta y se comparte</td><td><code>Combatiente o-- Inventario</code></td></tr>
+  <tr><td><code>A --&gt; B</code> / <code>A ..&gt; B</code></td><td>Asociación / dependencia</td><td>A guarda una referencia / solo invoca a B</td><td><code>WalkingBowmastersPOO ..&gt; GestorSonido</code></td></tr>
+  </table>
+  <div class="card"><h4>Idea clave para la exposición</h4><p>Lee el diagrama de arriba hacia abajo: <b>3 interfaces</b>
+  (<code>Renderizable</code>, <code>Atacable</code>, <code>ModoJuego</code>) → <b>5 clases abstractas</b> (<code>EntidadJuego</code>,
+  <code>Combatiente</code>, <code>Zombie</code>, <code>Arma</code>, <code>BaseModoJuego</code>) → clases concretas. El motor
+  (<code>WalkingBowmastersPOO</code>) sólo conoce los tipos abstractos: eso es lo que permite añadir un arma o un modo nuevo sin tocarlo.</p></div>
+</section>
+<section class="uml-page">
+  <h2>1.1 Diagrama de clases UML completo</h2>
+  <div class="legend"><span><b>&lt;|--</b> hereda</span><span><b>&lt;|..</b> implementa</span><span><b>*--</b> composición fuerte</span>
+  <span><b>o--</b> agregación</span><span><b>--&gt;</b> asociación</span><span><b>..&gt;</b> dependencia</span>
+  <span><b>+</b> public · <b>-</b> private · <b>#</b> protected · <b>*</b> abstracto</span></div>
+  <div class="mermaid-box uml" data-nombre="uml_clases"><pre class="mermaid-src">classDiagram
+    direction TB
+
+    %% =========================================================
+    %% INTERFACES (ABSTRACCION)
+    %% =========================================================
+    class Renderizable {
+        &lt;&lt;interface&gt;&gt;
+        +renderizar(Graphics2D g) void
+    }
+
+    class Atacable {
+        &lt;&lt;interface&gt;&gt;
+        +recibirDano(int cantidad) void
+        +estaVivo() boolean
+        +getVida() int
+        +getVidaMaxima() int
+    }
+
+    class ModoJuego {
+        &lt;&lt;interface&gt;&gt;
+        +iniciarModo() void
+        +actualizarLogica(double dt) void
+        +dibujarEscena(Graphics2D g) void
+        +getNombreModo() String
+    }
+
+    %% =========================================================
+    %% ENTIDADES Y JERARQUIA DE COMBATIENTES
+    %% =========================================================
+    class EntidadJuego {
+        &lt;&lt;abstract&gt;&gt;
+        #double x
+        #double y
+        #int vida
+        #int vidaMaxima
+        #boolean activo
+        +EntidadJuego(double x, double y, int vidaMaxima)
+        +actualizar(double dt)* void
+        +renderizar(Graphics2D g)* void
+        +getX() double
+        +getY() double
+        +setPosicion(double x, double y) void
+        +estaActivo() boolean
+    }
+
+    class Proyectil {
+        -double vx
+        -double vy
+        -int dano
+        -double factorGravedad
+        -boolean faccionJugador
+        -TipoProyectil tipo
+        -double radioExplosion
+        -double multiplicadorCritico
+        -boolean ignoraArmadura
+        -double rotacion
+        -double retrasoLanzamiento
+        -boolean yaLanzado
+        -List~Point2D.Double~ estela
+        +Proyectil(double x, double y, double vx, double vy, int dano, double factorGravedad, boolean faccionJugador, TipoProyectil tipo)
+        +Proyectil(double x, double y, double vx, double vy, int dano, double factorGravedad, boolean faccionJugador, TipoProyectil tipo, double radioExplosion, double multiplicadorCritico, boolean ignoraArmadura, double retrasoLanzamiento)
+        +actualizarConViento(double dt, double aceleracionViento) void
+        +actualizar(double dt) void
+        +renderizar(Graphics2D g) void
+    }
+
+    class Combatiente {
+        &lt;&lt;abstract&gt;&gt;
+        #String nombre
+        #int armadura
+        #double anguloApuntado
+        #double potenciaApuntado
+        #double animRetroceso
+        #double animCaminata
+        #double flashDano
+        #boolean mirandoDerecha
+        #Arma armaActual
+        #Inventario inventario
+        +Combatiente(String nombre, double x, double y, int vidaMaxima, int armadura)
+        +Combatiente(String nombre, double x, double y, int vidaMaxima, int armadura, Inventario inventario)
+        +calcularDano(int base) int
+        +calcularDano(int base, double multiplicadorCritico) int
+        +calcularDano(int base, double multiplicadorCritico, boolean ignoraArmadura) int
+        +recibirDano(int cantidad) void
+        +curar(int cantidad) void
+        +estaVivo() boolean
+        +actualizar(double dt) void
+        +actualizarComportamiento(double dt)* void
+        +dibujarBarraVida(Graphics2D g, double cx, double cy, double ancho, double alto, String etiqueta) void
+    }
+
+    class Superviviente {
+        -double animCorteKatana
+        -double tiempoRespiracion
+        -int escudoTemporal
+        +Superviviente(String nombre, double x, double y, Inventario inventario)
+        +equiparArmaPorIndice(int idx) void
+        +disparar(double angulo, double potencia) List~Proyectil~
+        +activarAnimacionKatana() void
+        +recibirDano(int cantidad) void
+        +actualizarComportamiento(double dt) void
+        +renderizar(Graphics2D g) void
+    }
+
+    class Zombie {
+        &lt;&lt;abstract&gt;&gt;
+        #double velocidad
+        #int danoAtaque
+        #double cadenciaAtaque
+        #double timerAtaque
+        #double escala
+        #Color colorPiel
+        #Color colorRopa
+        #Color colorOjos
+        #double objetivoX
+        +Zombie(String nombre, double x, double y, int vidaMaxima, int armadura, double velocidad, int danoAtaque)
+        +Zombie(String nombre, double x, double y, int vidaMaxima, int armadura, double velocidad, int danoAtaque, double escala)
+        +listoParaGolpear(double dt) boolean
+        +actualizarComportamiento(double dt) void
+        #dibujarCuerpoZombieBase(Graphics2D g, double inclinacion, boolean conCasco) void
+    }
+
+    class ZombieCaminante {
+        +ZombieCaminante(double x, double y, double multEscala, int bonusVida)
+        +renderizar(Graphics2D g) void
+    }
+
+    class ZombieCorredor {
+        +ZombieCorredor(double x, double y, int bonusVida)
+        +actualizarComportamiento(double dt) void
+        +renderizar(Graphics2D g) void
+    }
+
+    class ZombieBlindado {
+        +ZombieBlindado(double x, double y, int bonusVida)
+        +renderizar(Graphics2D g) void
+    }
+
+    class SaqueadorRival {
+        -double faseIdle
+        -double velocidad
+        -double posicionTiroX
+        -double timerDisparo
+        -Proyectil disparoPendiente
+        +SaqueadorRival(String nombre, double x, double y, double posicionTiroX)
+        +recogerDisparoPendiente() Proyectil
+        +actualizarComportamiento(double dt) void
+        +renderizar(Graphics2D g) void
+    }
+
+    %% =========================================================
+    %% COMPOSICION FUERTE: BATALLON *-- MIEMBROESCUADRON
+    %% =========================================================
+    class Batallon {
+        -List~MiembroEscuadron~ miembros
+        -boolean esJugador
+        -int totalMiembros
+        +Batallon(String nombre, double x, double y, int vidaGlobal, int armadura, boolean esJugador, Inventario inventarioCompartido)
+        -inicializarMiembros() void
+        -actualizarMiembrosSegunVida() void
+        +recibirDano(int cantidad) void
+        +destruirBatallon() void
+        +dispararEnUnisono(double angulo, double potencia) List~Proyectil~
+        +getMiembrosVivos() int
+        +actualizarComportamiento(double dt) void
+        +renderizar(Graphics2D g) void
+    }
+
+    class MiembroEscuadron {
+        &lt;&lt;private static&gt;&gt;
+        double offsetX
+        double offsetY
+        Color colorChaqueta
+        boolean usaCasco
+        boolean usaSombrero
+        boolean vivo
+        double progresoCaida
+        double fase
+        MiembroEscuadron(double offsetX, double offsetY, Color colorChaqueta, boolean usaCasco, boolean usaSombrero, double fase)
+    }
+
+    %% =========================================================
+    %% JERARQUIA DE ARMAS
+    %% =========================================================
+    class Arma {
+        &lt;&lt;abstract&gt;&gt;
+        #String nombre
+        #int danoBase
+        #int municion
+        #int municionMaxima
+        #double alcance
+        #double cadencia
+        #long ultimoDisparoMs
+        #Color colorAcento
+        +atacar(double xOrigen, double yOrigen, double angulo, double potencia)* List~Proyectil~
+        +atacar(double xOrigen, double yOrigen, double angulo, double potencia, boolean faccionJugador) List~Proyectil~
+        +getFactorGravedad()* double
+        +getVelocidadBase()* double
+        +getVelocidadExtra()* double
+        +dibujarArmaEnMano(Graphics2D g, double escala)* void
+        +puedeDisparar() boolean
+        +recargar(int cantidad) void
+        +calcularVelocidadInicial(double potencia) double
+    }
+
+    class RifleAsalto {
+        +atacar(double xOrigen, double yOrigen, double angulo, double potencia) List~Proyectil~
+        +dibujarArmaEnMano(Graphics2D g, double escala) void
+    }
+
+    class LanzaGranadas {
+        +atacar(double xOrigen, double yOrigen, double angulo, double potencia) List~Proyectil~
+        +dibujarArmaEnMano(Graphics2D g, double escala) void
+    }
+
+    class Revolver {
+        +atacar(double xOrigen, double yOrigen, double angulo, double potencia) List~Proyectil~
+        +dibujarArmaEnMano(Graphics2D g, double escala) void
+    }
+
+    class EspadaKatana {
+        +atacar(double xOrigen, double yOrigen, double angulo, double potencia) List~Proyectil~
+        +puedeCortarCuerpoACuerpo() boolean
+        +registrarCorteCuerpoACuerpo() void
+        +dibujarArmaEnMano(Graphics2D g, double escala) void
+    }
+
+    %% =========================================================
+    %% AGREGACION DEBIL: INVENTARIO Y SUMINISTRO
+    %% =========================================================
+    class Inventario {
+        -List~Arma~ armas
+        -List~Suministro~ suministros
+        -int recursosAcumulados
+        -int bajasTotales
+        +Inventario()
+        +getArma(int indice) Arma
+        +agregarSuministro(TipoSuministro tipo, int cantidad) void
+        +comprarSuministroConBotin(TipoSuministro tipo, int costo) boolean
+        +usarSuministro(TipoSuministro tipo) boolean
+        +recargarTodasLasArmas() void
+        +robarSuministroAleatorio(Random rng) String
+    }
+
+    class Suministro {
+        -TipoSuministro tipo
+        -int cantidad
+        -double x
+        -double y
+        -boolean enSuelo
+        -double tiempoFlotando
+        +Suministro(TipoSuministro tipo, int cantidad)
+        +Suministro(TipoSuministro tipo, int cantidad, double x, double y)
+        +consumirUno() boolean
+        +renderizarDrop(Graphics2D g) void
+    }
+
+    %% =========================================================
+    %% MODOS DE JUEGO Y MOTOR PRINCIPAL
+    %% =========================================================
+    class BaseModoJuego {
+        &lt;&lt;abstract&gt;&gt;
+        #Inventario inventario
+        #EscenarioApocaliptico escenario
+        #List~Proyectil~ proyectiles
+        #double camaraX
+        #boolean potenciaXAl100
+        #boolean cargandoTeclaX
+        #dispararConTeclaX(double potencia)* void
+        +alMoverRaton(double xVirtual, double yVirtual) void
+    }
+
+    class ModoSupervivenciaHordas {
+        -Superviviente jugador
+        -List~Zombie~ zombies
+        -List~SaqueadorRival~ saqueadores
+        -int oleada
+        -int vidaBarricada
+        +iniciarModo() void
+        +actualizarLogica(double dt) void
+        +dibujarEscena(Graphics2D g) void
+    }
+
+    class ModoDueloBatallones {
+        -Batallon batallonJugador
+        -Batallon batallonEnemigo
+        -List~ObstaculoTerreno~ obstaculos
+        -FaseTurno fase
+        -double vientoActual
+        +iniciarModo() void
+        +actualizarLogica(double dt) void
+        +dibujarEscena(Graphics2D g) void
+        -ejecutarDisparoIA() void
+    }
+
+    class ModoArmeriaCampoTiro {
+        -Superviviente tirador
+        -List~BlancoPractica~ blancos
+        +iniciarModo() void
+        +actualizarLogica(double dt) void
+        +dibujarEscena(Graphics2D g) void
+    }
+
+    class GestorSonido {
+        &lt;&lt;utility&gt;&gt;
+        -Map~String,byte[]~ CACHE
+        -boolean sonidoActivo
+        +alternarSonido() void
+        +reproducirDisparoRifle() void
+        +reproducirExplosion() void
+        +reproducirCorteKatana() void
+    }
+
+    class WalkingBowmastersPOO {
+        -EstadoPantalla estado
+        -Inventario inventarioCompartido
+        -EscenarioApocaliptico escenario
+        -BaseModoJuego modoActivo
+        +actionPerformed(ActionEvent e) void
+        #paintComponent(Graphics g) void
+        +main(String[] args) void
+    }
+
+    %% =========================================================
+    %% RELACIONES UML
+    %% =========================================================
+    Renderizable &lt;|.. EntidadJuego : implementa
+    Atacable &lt;|.. Combatiente : implementa
+    ModoJuego &lt;|.. BaseModoJuego : implementa
+
+    EntidadJuego &lt;|-- Combatiente : hereda
+    EntidadJuego &lt;|-- Proyectil : hereda
+
+    Combatiente &lt;|-- Superviviente : hereda
+    Combatiente &lt;|-- Zombie : hereda
+    Combatiente &lt;|-- SaqueadorRival : hereda
+    Combatiente &lt;|-- Batallon : hereda
+
+    Zombie &lt;|-- ZombieCaminante : hereda
+    Zombie &lt;|-- ZombieCorredor : hereda
+    Zombie &lt;|-- ZombieBlindado : hereda
+
+    Arma &lt;|-- RifleAsalto : hereda
+    Arma &lt;|-- LanzaGranadas : hereda
+    Arma &lt;|-- Revolver : hereda
+    Arma &lt;|-- EspadaKatana : hereda
+
+    BaseModoJuego &lt;|-- ModoSupervivenciaHordas : hereda
+    BaseModoJuego &lt;|-- ModoDueloBatallones : hereda
+    BaseModoJuego &lt;|-- ModoArmeriaCampoTiro : hereda
+
+    Batallon &quot;1&quot; *-- &quot;4&quot; MiembroEscuadron : Composición Fuerte
+
+    Inventario &quot;1&quot; o-- &quot;4&quot; Arma : Agregación
+    Inventario &quot;1&quot; o-- &quot;*&quot; Suministro : Agregación
+    Combatiente &quot;0..*&quot; o-- &quot;0..1&quot; Inventario : Agregación Débil
+    Combatiente &quot;0..*&quot; o-- &quot;0..1&quot; Arma : Equipa
+
+    WalkingBowmastersPOO --&gt; BaseModoJuego : ejecuta
+    WalkingBowmastersPOO --&gt; Inventario : crea y comparte
+    WalkingBowmastersPOO ..&gt; GestorSonido : invoca SFX
+</pre></div>
+  <p class="small">Vista general vectorial (amplía el PDF para leer cada miembro). Las tres páginas siguientes dividen el mismo diagrama en vistas legibles a tamaño real.</p>
+</section>
+<section class="uml-page"><h2>1.1.a Interfaces y jerarquía de combatientes</h2><div class="mermaid-box uml" data-nombre="uml_vista_1"><pre class="mermaid-src">classDiagram
+    direction TB
+    class Renderizable {
+        &lt;&lt;interface&gt;&gt;
+        +renderizar(Graphics2D g) void
+    }
+    class Atacable {
+        &lt;&lt;interface&gt;&gt;
+        +recibirDano(int cantidad) void
+        +estaVivo() boolean
+        +getVida() int
+        +getVidaMaxima() int
+    }
+    class EntidadJuego {
+        &lt;&lt;abstract&gt;&gt;
+        #double x
+        #double y
+        #int vida
+        #int vidaMaxima
+        #boolean activo
+        +EntidadJuego(double x, double y, int vidaMaxima)
+        +actualizar(double dt)* void
+        +renderizar(Graphics2D g)* void
+        +getX() double
+        +getY() double
+        +setPosicion(double x, double y) void
+        +estaActivo() boolean
+    }
+    class Proyectil {
+        -double vx
+        -double vy
+        -int dano
+        -double factorGravedad
+        -boolean faccionJugador
+        -TipoProyectil tipo
+        -double radioExplosion
+        -double multiplicadorCritico
+        -boolean ignoraArmadura
+        -double rotacion
+        -double retrasoLanzamiento
+        -boolean yaLanzado
+        -List~Point2D.Double~ estela
+        +Proyectil(double x, double y, double vx, double vy, int dano, double factorGravedad, boolean faccionJugador, TipoProyectil tipo)
+        +Proyectil(double x, double y, double vx, double vy, int dano, double factorGravedad, boolean faccionJugador, TipoProyectil tipo, double radioExplosion, double multiplicadorCritico, boolean ignoraArmadura, double retrasoLanzamiento)
+        +actualizarConViento(double dt, double aceleracionViento) void
+        +actualizar(double dt) void
+        +renderizar(Graphics2D g) void
+    }
+    class Combatiente {
+        &lt;&lt;abstract&gt;&gt;
+        #String nombre
+        #int armadura
+        #double anguloApuntado
+        #double potenciaApuntado
+        #double animRetroceso
+        #double animCaminata
+        #double flashDano
+        #boolean mirandoDerecha
+        #Arma armaActual
+        #Inventario inventario
+        +Combatiente(String nombre, double x, double y, int vidaMaxima, int armadura)
+        +Combatiente(String nombre, double x, double y, int vidaMaxima, int armadura, Inventario inventario)
+        +calcularDano(int base) int
+        +calcularDano(int base, double multiplicadorCritico) int
+        +calcularDano(int base, double multiplicadorCritico, boolean ignoraArmadura) int
+        +recibirDano(int cantidad) void
+        +curar(int cantidad) void
+        +estaVivo() boolean
+        +actualizar(double dt) void
+        +actualizarComportamiento(double dt)* void
+        +dibujarBarraVida(Graphics2D g, double cx, double cy, double ancho, double alto, String etiqueta) void
+    }
+    class Superviviente {
+        -double animCorteKatana
+        -double tiempoRespiracion
+        -int escudoTemporal
+        +Superviviente(String nombre, double x, double y, Inventario inventario)
+        +equiparArmaPorIndice(int idx) void
+        +disparar(double angulo, double potencia) List~Proyectil~
+        +activarAnimacionKatana() void
+        +recibirDano(int cantidad) void
+        +actualizarComportamiento(double dt) void
+        +renderizar(Graphics2D g) void
+    }
+    class Zombie {
+        &lt;&lt;abstract&gt;&gt;
+        #double velocidad
+        #int danoAtaque
+        #double cadenciaAtaque
+        #double timerAtaque
+        #double escala
+        #Color colorPiel
+        #Color colorRopa
+        #Color colorOjos
+        #double objetivoX
+        +Zombie(String nombre, double x, double y, int vidaMaxima, int armadura, double velocidad, int danoAtaque)
+        +Zombie(String nombre, double x, double y, int vidaMaxima, int armadura, double velocidad, int danoAtaque, double escala)
+        +listoParaGolpear(double dt) boolean
+        +actualizarComportamiento(double dt) void
+        #dibujarCuerpoZombieBase(Graphics2D g, double inclinacion, boolean conCasco) void
+    }
+    class ZombieCaminante {
+        +ZombieCaminante(double x, double y, double multEscala, int bonusVida)
+        +renderizar(Graphics2D g) void
+    }
+    class ZombieCorredor {
+        +ZombieCorredor(double x, double y, int bonusVida)
+        +actualizarComportamiento(double dt) void
+        +renderizar(Graphics2D g) void
+    }
+    class ZombieBlindado {
+        +ZombieBlindado(double x, double y, int bonusVida)
+        +renderizar(Graphics2D g) void
+    }
+    class SaqueadorRival {
+        -double faseIdle
+        -double velocidad
+        -double posicionTiroX
+        -double timerDisparo
+        -Proyectil disparoPendiente
+        +SaqueadorRival(String nombre, double x, double y, double posicionTiroX)
+        +recogerDisparoPendiente() Proyectil
+        +actualizarComportamiento(double dt) void
+        +renderizar(Graphics2D g) void
+    }
+    class Batallon {
+        -List~MiembroEscuadron~ miembros
+        -boolean esJugador
+        -int totalMiembros
+        +Batallon(String nombre, double x, double y, int vidaGlobal, int armadura, boolean esJugador, Inventario inventarioCompartido)
+        -inicializarMiembros() void
+        -actualizarMiembrosSegunVida() void
+        +recibirDano(int cantidad) void
+        +destruirBatallon() void
+        +dispararEnUnisono(double angulo, double potencia) List~Proyectil~
+        +getMiembrosVivos() int
+        +actualizarComportamiento(double dt) void
+        +renderizar(Graphics2D g) void
+    }
+    class MiembroEscuadron {
+        &lt;&lt;private static&gt;&gt;
+        double offsetX
+        double offsetY
+        Color colorChaqueta
+        boolean usaCasco
+        boolean usaSombrero
+        boolean vivo
+        double progresoCaida
+        double fase
+        MiembroEscuadron(double offsetX, double offsetY, Color colorChaqueta, boolean usaCasco, boolean usaSombrero, double fase)
+    }
+    Renderizable &lt;|.. EntidadJuego : implementa
+    Atacable &lt;|.. Combatiente : implementa
+    EntidadJuego &lt;|-- Combatiente : hereda
+    EntidadJuego &lt;|-- Proyectil : hereda
+    Combatiente &lt;|-- Superviviente : hereda
+    Combatiente &lt;|-- Zombie : hereda
+    Combatiente &lt;|-- SaqueadorRival : hereda
+    Combatiente &lt;|-- Batallon : hereda
+    Zombie &lt;|-- ZombieCaminante : hereda
+    Zombie &lt;|-- ZombieCorredor : hereda
+    Zombie &lt;|-- ZombieBlindado : hereda
+    Batallon &quot;1&quot; *-- &quot;4&quot; MiembroEscuadron : Composición Fuerte</pre></div></section><section class="uml-page"><h2>1.1.b Armas, inventario y suministros</h2><div class="mermaid-box uml" data-nombre="uml_vista_2"><pre class="mermaid-src">classDiagram
+    direction TB
+    class Arma {
+        &lt;&lt;abstract&gt;&gt;
+        #String nombre
+        #int danoBase
+        #int municion
+        #int municionMaxima
+        #double alcance
+        #double cadencia
+        #long ultimoDisparoMs
+        #Color colorAcento
+        +atacar(double xOrigen, double yOrigen, double angulo, double potencia)* List~Proyectil~
+        +atacar(double xOrigen, double yOrigen, double angulo, double potencia, boolean faccionJugador) List~Proyectil~
+        +getFactorGravedad()* double
+        +getVelocidadBase()* double
+        +getVelocidadExtra()* double
+        +dibujarArmaEnMano(Graphics2D g, double escala)* void
+        +puedeDisparar() boolean
+        +recargar(int cantidad) void
+        +calcularVelocidadInicial(double potencia) double
+    }
+    class RifleAsalto {
+        +atacar(double xOrigen, double yOrigen, double angulo, double potencia) List~Proyectil~
+        +dibujarArmaEnMano(Graphics2D g, double escala) void
+    }
+    class LanzaGranadas {
+        +atacar(double xOrigen, double yOrigen, double angulo, double potencia) List~Proyectil~
+        +dibujarArmaEnMano(Graphics2D g, double escala) void
+    }
+    class Revolver {
+        +atacar(double xOrigen, double yOrigen, double angulo, double potencia) List~Proyectil~
+        +dibujarArmaEnMano(Graphics2D g, double escala) void
+    }
+    class EspadaKatana {
+        +atacar(double xOrigen, double yOrigen, double angulo, double potencia) List~Proyectil~
+        +puedeCortarCuerpoACuerpo() boolean
+        +registrarCorteCuerpoACuerpo() void
+        +dibujarArmaEnMano(Graphics2D g, double escala) void
+    }
+    class Inventario {
+        -List~Arma~ armas
+        -List~Suministro~ suministros
+        -int recursosAcumulados
+        -int bajasTotales
+        +Inventario()
+        +getArma(int indice) Arma
+        +agregarSuministro(TipoSuministro tipo, int cantidad) void
+        +comprarSuministroConBotin(TipoSuministro tipo, int costo) boolean
+        +usarSuministro(TipoSuministro tipo) boolean
+        +recargarTodasLasArmas() void
+        +robarSuministroAleatorio(Random rng) String
+    }
+    class Suministro {
+        -TipoSuministro tipo
+        -int cantidad
+        -double x
+        -double y
+        -boolean enSuelo
+        -double tiempoFlotando
+        +Suministro(TipoSuministro tipo, int cantidad)
+        +Suministro(TipoSuministro tipo, int cantidad, double x, double y)
+        +consumirUno() boolean
+        +renderizarDrop(Graphics2D g) void
+    }
+    class Combatiente {
+        &lt;&lt;abstract&gt;&gt;
+        #String nombre
+        #int armadura
+        #double anguloApuntado
+        #double potenciaApuntado
+        #double animRetroceso
+        #double animCaminata
+        #double flashDano
+        #boolean mirandoDerecha
+        #Arma armaActual
+        #Inventario inventario
+        +Combatiente(String nombre, double x, double y, int vidaMaxima, int armadura)
+        +Combatiente(String nombre, double x, double y, int vidaMaxima, int armadura, Inventario inventario)
+        +calcularDano(int base) int
+        +calcularDano(int base, double multiplicadorCritico) int
+        +calcularDano(int base, double multiplicadorCritico, boolean ignoraArmadura) int
+        +recibirDano(int cantidad) void
+        +curar(int cantidad) void
+        +estaVivo() boolean
+        +actualizar(double dt) void
+        +actualizarComportamiento(double dt)* void
+        +dibujarBarraVida(Graphics2D g, double cx, double cy, double ancho, double alto, String etiqueta) void
+    }
+    Arma &lt;|-- RifleAsalto : hereda
+    Arma &lt;|-- LanzaGranadas : hereda
+    Arma &lt;|-- Revolver : hereda
+    Arma &lt;|-- EspadaKatana : hereda
+    Inventario &quot;1&quot; o-- &quot;4&quot; Arma : Agregación
+    Inventario &quot;1&quot; o-- &quot;*&quot; Suministro : Agregación
+    Combatiente &quot;0..*&quot; o-- &quot;0..1&quot; Inventario : Agregación Débil
+    Combatiente &quot;0..*&quot; o-- &quot;0..1&quot; Arma : Equipa</pre></div></section><section class="uml-page"><h2>1.1.c Modos de juego, motor y audio</h2><div class="mermaid-box uml" data-nombre="uml_vista_3"><pre class="mermaid-src">classDiagram
+    direction TB
+    class ModoJuego {
+        &lt;&lt;interface&gt;&gt;
+        +iniciarModo() void
+        +actualizarLogica(double dt) void
+        +dibujarEscena(Graphics2D g) void
+        +getNombreModo() String
+    }
+    class BaseModoJuego {
+        &lt;&lt;abstract&gt;&gt;
+        #Inventario inventario
+        #EscenarioApocaliptico escenario
+        #List~Proyectil~ proyectiles
+        #double camaraX
+        #boolean potenciaXAl100
+        #boolean cargandoTeclaX
+        #dispararConTeclaX(double potencia)* void
+        +alMoverRaton(double xVirtual, double yVirtual) void
+    }
+    class ModoSupervivenciaHordas {
+        -Superviviente jugador
+        -List~Zombie~ zombies
+        -List~SaqueadorRival~ saqueadores
+        -int oleada
+        -int vidaBarricada
+        +iniciarModo() void
+        +actualizarLogica(double dt) void
+        +dibujarEscena(Graphics2D g) void
+    }
+    class ModoDueloBatallones {
+        -Batallon batallonJugador
+        -Batallon batallonEnemigo
+        -List~ObstaculoTerreno~ obstaculos
+        -FaseTurno fase
+        -double vientoActual
+        +iniciarModo() void
+        +actualizarLogica(double dt) void
+        +dibujarEscena(Graphics2D g) void
+        -ejecutarDisparoIA() void
+    }
+    class ModoArmeriaCampoTiro {
+        -Superviviente tirador
+        -List~BlancoPractica~ blancos
+        +iniciarModo() void
+        +actualizarLogica(double dt) void
+        +dibujarEscena(Graphics2D g) void
+    }
+    class WalkingBowmastersPOO {
+        -EstadoPantalla estado
+        -Inventario inventarioCompartido
+        -EscenarioApocaliptico escenario
+        -BaseModoJuego modoActivo
+        +actionPerformed(ActionEvent e) void
+        #paintComponent(Graphics g) void
+        +main(String[] args) void
+    }
+    class GestorSonido {
+        &lt;&lt;utility&gt;&gt;
+        -Map~String,byte[]~ CACHE
+        -boolean sonidoActivo
+        +alternarSonido() void
+        +reproducirDisparoRifle() void
+        +reproducirExplosion() void
+        +reproducirCorteKatana() void
+    }
+    class Inventario {
+        -List~Arma~ armas
+        -List~Suministro~ suministros
+        -int recursosAcumulados
+        -int bajasTotales
+        +Inventario()
+        +getArma(int indice) Arma
+        +agregarSuministro(TipoSuministro tipo, int cantidad) void
+        +comprarSuministroConBotin(TipoSuministro tipo, int costo) boolean
+        +usarSuministro(TipoSuministro tipo) boolean
+        +recargarTodasLasArmas() void
+        +robarSuministroAleatorio(Random rng) String
+    }
+    ModoJuego &lt;|.. BaseModoJuego : implementa
+    BaseModoJuego &lt;|-- ModoSupervivenciaHordas : hereda
+    BaseModoJuego &lt;|-- ModoDueloBatallones : hereda
+    BaseModoJuego &lt;|-- ModoArmeriaCampoTiro : hereda
+    WalkingBowmastersPOO --&gt; BaseModoJuego : ejecuta
+    WalkingBowmastersPOO --&gt; Inventario : crea y comparte
+    WalkingBowmastersPOO ..&gt; GestorSonido : invoca SFX</pre></div></section>
+<section style="break-before:page">
+  <h2 style="margin-top:0">1.2 Diagrama de objetos en tiempo de ejecución — Modo 2 (Duelo 1v1)</h2>
+  <p>Instantánea de la memoria durante <code>PROYECTIL_EN_VUELO</code>: <code>batallonJugador</code> ya recibió un impacto
+  (240/320 HP = 75 %), por eso <code>miembros[3]</code> está caído, y una granada del <code>LanzaGranadas</code> vuela sobre el
+  autobús. Azul = composición ◆, naranja = agregación ◇.</p>
+  <div class="mermaid-box tall" data-nombre="uml_objetos"><pre class="mermaid-src">flowchart LR
+  Motor[&quot;&lt;b&gt;app : WalkingBowmastersPOO&lt;/b&gt;&lt;br/&gt;estado = JUGANDO_MODO_2&quot;]
+  Modo[&quot;&lt;b&gt;modoDuelo : ModoDueloBatallones&lt;/b&gt;&lt;br/&gt;fase = PROYECTIL_EN_VUELO&lt;br/&gt;vientoActual = -48.5 · camaraX = 310.0&lt;br/&gt;turnoIA = 1 · botinProcesadoEnTurno = false&quot;]
+  subgraph CJ[&quot;Composición Fuerte ◆ (vive y muere con batallonJugador)&quot;]
+    direction TB
+    BJ[&quot;&lt;b&gt;batallonJugador : Batallon&lt;/b&gt;&lt;br/&gt;x = 210.0 · y = 582.0&lt;br/&gt;vida = 240 / 320 (75 %)&lt;br/&gt;armadura = 8 · esJugador = true&quot;]
+    M0[&quot;miembros[0] : MiembroEscuadron&lt;br/&gt;offsetX = -52 · sombrero&lt;br/&gt;vivo = true&quot;]
+    M1[&quot;miembros[1] : MiembroEscuadron&lt;br/&gt;offsetX = -18 · casco&lt;br/&gt;vivo = true&quot;]
+    M2[&quot;miembros[2] : MiembroEscuadron&lt;br/&gt;offsetX = 16&lt;br/&gt;vivo = true&quot;]
+    M3[&quot;miembros[3] : MiembroEscuadron&lt;br/&gt;offsetX = 50 · casco&lt;br/&gt;vivo = false · progresoCaida = 1.0&quot;]
+  end
+  subgraph AG[&quot;Agregación Débil ◇ (objetos independientes)&quot;]
+    direction TB
+    Inv[&quot;&lt;b&gt;inventarioCompartido : Inventario&lt;/b&gt;&lt;br/&gt;recursosAcumulados = 160&lt;br/&gt;bajasTotales = 1&quot;]
+    LG[&quot;armas[1] : LanzaGranadas&lt;br/&gt;&#x27;Lanzagranadas M79&#x27; · danoBase = 74&lt;br/&gt;municion = 9 / 24&quot;]
+    Bot[&quot;suministros[0] : Suministro&lt;br/&gt;tipo = BOTIQUIN · cantidad = 3&quot;]
+    Mun[&quot;suministros[1] : Suministro&lt;br/&gt;tipo = CAJA_MUNICION · cantidad = 3&quot;]
+  end
+  subgraph MU[&quot;Entidades activas en escena&quot;]
+    direction TB
+    BE[&quot;&lt;b&gt;batallonEnemigo : Batallon&lt;/b&gt;&lt;br/&gt;x = 1620.0 · vida = 320 / 320&lt;br/&gt;esJugador = false&quot;]
+    PR[&quot;&lt;b&gt;proyectiles[0] : Proyectil&lt;/b&gt;&lt;br/&gt;tipo = GRANADA · faccionJugador = true&lt;br/&gt;x = 785.4 · y = 264.2&lt;br/&gt;vx = 512.0 · vy = -190.5&lt;br/&gt;radioExplosion = 145.0&quot;]
+    OB[&quot;obstaculos[0] : ObstaculoTerreno&lt;br/&gt;tipo = AUTOBUS · x = 780 · y = 464&lt;br/&gt;185 × 118&quot;]
+  end
+  Motor --&gt;|modoActivo| Modo
+  Motor --&gt;|&quot;crea ◇&quot;| Inv
+  Modo --&gt; BJ
+  Modo --&gt; BE
+  Modo --&gt; PR
+  Modo --&gt; OB
+  BJ ==&gt;|&quot;◆ *--&quot;| M0
+  BJ ==&gt;|&quot;◆ *--&quot;| M1
+  BJ ==&gt;|&quot;◆ *--&quot;| M2
+  BJ ==&gt;|&quot;◆ *--&quot;| M3
+  BJ -.-&gt;|&quot;inventario ◇&quot;| Inv
+  BJ -.-&gt;|&quot;armaActual ◇&quot;| LG
+  Inv -.-&gt;|&quot;◇ o--&quot;| LG
+  Inv -.-&gt;|&quot;◇ o--&quot;| Bot
+  Inv -.-&gt;|&quot;◇ o--&quot;| Mun
+  classDef comp fill:#e8f0fb,stroke:#2a78d6,stroke-width:2px,color:#0b0b0b
+  classDef agr fill:#fdf0e9,stroke:#eb6834,stroke-width:2px,color:#0b0b0b
+  classDef mot fill:#1f1d24,stroke:#1f1d24,color:#ffffff
+  classDef caido fill:#eeeeee,stroke:#8a8984,stroke-dasharray:4 3,color:#52514e
+  class BJ,M0,M1,M2 comp
+  class M3 caido
+  class Inv,LG,Bot,Mun agr
+  class Motor,Modo mot
+</pre></div>
+</section>
+<section style="break-before:page">
+  <h2 style="margin-top:0">1.3 Dependencias entre paquetes (análisis automático de <code>import</code>)</h2>
+  <p>El script lee cada sentencia <code>import</code> de los 34 archivos y dibuja el grafo real. Las aristas rojas pertenecen a un
+  ciclo detectado con el algoritmo de Tarjan.</p>
+  <div class="mermaid-box tall" data-nombre="paquetes"><pre class="mermaid-src">flowchart TB
+  raiz[&quot;&lt;b&gt;WalkingBowmastersPOO&lt;br/&gt;(paquete por defecto)&lt;/b&gt;&lt;br/&gt;1 archivo(s)&quot;]
+  armas[&quot;&lt;b&gt;armas/&lt;/b&gt;&lt;br/&gt;5 archivo(s)&quot;]
+  audio[&quot;&lt;b&gt;audio/&lt;/b&gt;&lt;br/&gt;1 archivo(s)&quot;]
+  efectos[&quot;&lt;b&gt;efectos/&lt;/b&gt;&lt;br/&gt;3 archivo(s)&quot;]
+  entidades[&quot;&lt;b&gt;entidades/&lt;/b&gt;&lt;br/&gt;11 archivo(s)&quot;]
+  escenario[&quot;&lt;b&gt;escenario/&lt;/b&gt;&lt;br/&gt;2 archivo(s)&quot;]
+  interfaces[&quot;&lt;b&gt;interfaces/&lt;/b&gt;&lt;br/&gt;3 archivo(s)&quot;]
+  inventario[&quot;&lt;b&gt;inventario/&lt;/b&gt;&lt;br/&gt;3 archivo(s)&quot;]
+  modos[&quot;&lt;b&gt;modos/&lt;/b&gt;&lt;br/&gt;4 archivo(s)&quot;]
+  util[&quot;&lt;b&gt;util/&lt;/b&gt;&lt;br/&gt;1 archivo(s)&quot;]
+  raiz --&gt; armas
+  raiz --&gt; audio
+  raiz --&gt; escenario
+  raiz --&gt; inventario
+  raiz --&gt; modos
+  raiz --&gt; util
+  armas --&gt; entidades
+  armas --&gt; util
+  efectos --&gt; util
+  entidades --&gt; armas
+  entidades --&gt; interfaces
+  entidades --&gt; inventario
+  entidades --&gt; util
+  escenario --&gt; util
+  inventario --&gt; armas
+  modos --&gt; armas
+  modos --&gt; audio
+  modos --&gt; efectos
+  modos --&gt; entidades
+  modos --&gt; escenario
+  modos --&gt; interfaces
+  modos --&gt; inventario
+  modos --&gt; util
+  linkStyle 6,9,11,14 stroke:#e34948,stroke-width:3px
+  classDef ciclo fill:#fdecec,stroke:#e34948,stroke-width:2px,color:#0b0b0b
+  classDef base fill:#f4f3ef,stroke:#8a8984,color:#0b0b0b
+  classDef raiz fill:#1f1d24,stroke:#1f1d24,color:#ffffff
+  class armas,entidades,inventario ciclo
+  class audio,efectos,escenario,interfaces,modos,util base
+  class raiz raiz</pre></div>
+  <div class="card red warn"><h4>Hallazgo honesto: existe un ciclo</h4>
+  <p>Paquetes en ciclo: <b>armas ↔ entidades ↔ inventario</b>. Causa: <code>armas.Arma.atacar(...)</code> crea objetos <code>entidades.Proyectil</code>, mientras que <code>entidades.Combatiente</code> guarda un <code>armas.Arma armaActual</code> (y <code>inventario.Inventario</code> agrupa armas). Java lo compila sin problema porque resuelve todos los tipos en la misma compilación, pero <b>no es un grafo acíclico</b>. Si el profesor pregunta, la respuesta está en la pregunta 8 del banco (Capítulo 5): se rompería moviendo <code>Proyectil</code> y <code>TipoProyectil</code> a un paquete propio (p. ej. <code>balistica/</code>) del que dependan tanto <code>armas</code> como <code>entidades</code>.</p>
+  <p>Lo que sí está limpio: <code>util</code>, <code>interfaces</code> y <code>audio</code> no dependen de nadie (hojas); <code>modos</code> es la única capa que orquesta a todas; y ningún paquete depende de <code>modos</code> salvo la clase principal.</p></div>
+  <table><tr><th>Paquete</th><th>Archivos</th><th>Líneas</th><th>Clases (enlace a GitHub)</th></tr><tr><td><b>(raiz)</b></td><td>1</td><td>598</td><td><a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/WalkingBowmastersPOO.java">WalkingBowmastersPOO</a></td></tr><tr><td><b>armas</b></td><td>5</td><td>313</td><td><a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/armas/Arma.java">Arma</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/armas/EspadaKatana.java">EspadaKatana</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/armas/LanzaGranadas.java">LanzaGranadas</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/armas/Revolver.java">Revolver</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/armas/RifleAsalto.java">RifleAsalto</a></td></tr><tr><td><b>audio</b></td><td>1</td><td>174</td><td><a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/audio/GestorSonido.java">GestorSonido</a></td></tr><tr><td><b>efectos</b></td><td>3</td><td>142</td><td><a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/efectos/OndaExpansiva.java">OndaExpansiva</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/efectos/Particula.java">Particula</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/efectos/TextoFlotante.java">TextoFlotante</a></td></tr><tr><td><b>entidades</b></td><td>11</td><td>1017</td><td><a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/Batallon.java">Batallon</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/Combatiente.java">Combatiente</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/EntidadJuego.java">EntidadJuego</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/Proyectil.java">Proyectil</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/SaqueadorRival.java">SaqueadorRival</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/Superviviente.java">Superviviente</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/TipoProyectil.java">TipoProyectil</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/Zombie.java">Zombie</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/ZombieBlindado.java">ZombieBlindado</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/ZombieCaminante.java">ZombieCaminante</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/ZombieCorredor.java">ZombieCorredor</a></td></tr><tr><td><b>escenario</b></td><td>2</td><td>195</td><td><a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/escenario/EscenarioApocaliptico.java">EscenarioApocaliptico</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/escenario/ObstaculoTerreno.java">ObstaculoTerreno</a></td></tr><tr><td><b>interfaces</b></td><td>3</td><td>40</td><td><a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/interfaces/Atacable.java">Atacable</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/interfaces/ModoJuego.java">ModoJuego</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/interfaces/Renderizable.java">Renderizable</a></td></tr><tr><td><b>inventario</b></td><td>3</td><td>214</td><td><a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/inventario/Inventario.java">Inventario</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/inventario/Suministro.java">Suministro</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/inventario/TipoSuministro.java">TipoSuministro</a></td></tr><tr><td><b>modos</b></td><td>4</td><td>1777</td><td><a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/modos/BaseModoJuego.java">BaseModoJuego</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/modos/ModoArmeriaCampoTiro.java">ModoArmeriaCampoTiro</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/modos/ModoDueloBatallones.java">ModoDueloBatallones</a>, <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/modos/ModoSupervivenciaHordas.java">ModoSupervivenciaHordas</a></td></tr><tr><td><b>util</b></td><td>1</td><td>19</td><td><a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/util/ConstantesJuego.java">ConstantesJuego</a></td></tr></table>
+</section>
+
+<section class="chapter" id="cap2">
+  <div class="chapter-head"><div class="num">Capítulo 2</div><h1>Radiografía del motor</h1>
+  <p>Librerías, latido de 60 FPS, máquinas de estado y el pipeline de dibujo 2D: cómo un <code>JPanel</code> se convierte en un juego.</p></div>
+  <h2>2.1 Librerías y APIs utilizadas</h2>
+  <table><tr><th style="width:22%">Paquete Java</th><th style="width:30%">Clases clave</th><th>Rol en el proyecto</th></tr>
+  <tr><td><code>javax.swing.*</code></td><td>JFrame, JPanel, Timer, SwingUtilities</td><td>Ventana, lienzo con <i>double buffering</i>, creación de la GUI en el EDT (<code>invokeLater</code>) y latido <code>new Timer(16, this)</code>.</td></tr>
+  <tr><td><code>java.awt.*</code></td><td>Graphics2D, RenderingHints, GradientPaint, BasicStroke, AlphaComposite, Polygon, Font, Cursor</td><td>Dibujo vectorial procedural de personajes, armas y fondos; degradados; transparencias; <code>HAND_CURSOR</code> / <code>CROSSHAIR_CURSOR</code>.</td></tr>
+  <tr><td><code>java.awt.event.*</code></td><td>ActionListener, MouseAdapter, KeyAdapter</td><td>Arrastre estilo Bowmasters, <code>mouseMoved</code> (hover), atajos <code>1-4</code>, <code>Q/E/R</code>, <code>X</code>, <code>C</code>, <code>A/D</code>, <code>F1-F3</code>, <code>ESC</code>, <code>M</code>.</td></tr>
+  <tr><td><code>java.awt.geom.*</code></td><td>Point2D.Double, Ellipse2D, RoundRectangle2D, Arc2D</td><td>Coordenadas virtuales en <code>double</code>, proyectiles, ondas expansivas y arcos de la Katana.</td></tr>
+  <tr><td><code>java.util.*</code></td><td>List, ArrayList, Iterator, Map, HashMap, Random</td><td>Colecciones dinámicas; <code>Iterator.remove()</code> seguro al recorrer; caché de audio; oleadas y viento aleatorios.</td></tr>
+  <tr><td><code>javax.sound.sampled.*</code></td><td>AudioFormat, AudioSystem, DataLine.Info, SourceDataLine</td><td>Síntesis y reproducción PCM 16-bit a 44 100 Hz en memoria, sin archivos.</td></tr>
+  <tr><td><code>java.util.concurrent.*</code></td><td>ExecutorService, ThreadFactory, AtomicInteger</td><td>Pool de hilos <i>daemon</i> para hasta 10 voces simultáneas sin bloquear el render.</td></tr>
+  </table>
+  <h2>2.2 Infografía: el game loop de 60 FPS</h2>
+  <div class="steps">
+   <div class="step"><div class="body"><b>Latido.</b> El constructor crea <code>Timer loop = new Timer(16, this)</code>: cada ~16 ms Swing
+   invoca <code>actionPerformed(ActionEvent e)</code> en el <i>Event Dispatch Thread</i> (1000/16 ≈ 62.5 → ~60 FPS reales).</div></div>
+   <div class="step"><div class="body"><b>Entrada.</b> Entre ticks, <code>MouseAdapter</code> y <code>KeyAdapter</code> guardan el estado
+   (cursor, arrastre, tecla <code>X</code> cargando…). El clic se convierte a coordenadas virtuales con <code>mapearAMundoVirtual(e)</code>.</div></div>
+   <div class="step"><div class="body"><b>Delta-time.</b> <code>dt = Math.min(0.05, (ahora - ultimoNano) / 1e9)</code>. Todas las
+   velocidades están en píxeles/segundo, así el juego corre igual en un PC rápido o lento; el tope de 50 ms evita que tras un
+   tirón una bala “salte” a través de un zombie (<i>tunneling</i>).</div></div>
+   <div class="step"><div class="body"><b>Actualización.</b> <code>escenario.actualizar(dt)</code> (cenizas) y
+   <code>modoActivo.actualizarLogica(dt)</code>: IA, física, colisiones, partículas — <b>polimorfismo</b>: el motor no sabe qué modo es.</div></div>
+   <div class="step"><div class="body"><b>Render.</b> <code>repaint()</code> agenda <code>paintComponent(Graphics g)</code>: escala virtual,
+   shake, escena del modo, HUD. Swing vuelca el búfer oculto de una sola vez (sin parpadeo).</div></div>
+  </div>
+  <figure class="code">
+  <figcaption><span class="file">WalkingBowmastersPOO.java</span><span class="lines">líneas 337–348</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/WalkingBowmastersPOO.java#L337-L348">ver en GitHub ↗</a></figcaption>
+  <div class="code-title">El tick completo del motor</div>
+  <div class="code-body"><pre class="ln">337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348</pre><pre class="src"><span class="a">@Override</span>
+<span class="k">public</span> <span class="k">void</span> actionPerformed(<span class="t">ActionEvent</span> e) {
+    <span class="k">long</span> ahora = <span class="t">System</span>.nanoTime();
+    <span class="k">double</span> dt = <span class="t">Math</span>.min(<span class="n">0.05</span>, (ahora - ultimoNano) / 1_000_000_000.<span class="n">0</span>);
+    ultimoNano = ahora;
+
+    escenario.actualizar(dt);
+    <span class="k">if</span> (modoActivo != <span class="k">null</span>) {
+        modoActivo.actualizarLogica(dt);
+    }
+    repaint();
+}</pre></div>
+  <div class="code-note">Medir el tiempo real con System.nanoTime() y acotarlo a 0.05 s es la base de una física estable.</div>
+</figure>
+  <h2>2.3 Máquinas de estado</h2>
+  <h4>EstadoPantalla (WalkingBowmastersPOO)</h4><div class="mermaid-box estado" data-nombre="estados_pantalla"><pre class="mermaid-src">stateDiagram-v2
+  direction LR
+  [*] --&gt; MENU_PRINCIPAL
+  MENU_PRINCIPAL --&gt; JUGANDO_MODO_1 : clic / 1 / F1
+  MENU_PRINCIPAL --&gt; JUGANDO_MODO_2 : clic / 2 / F2
+  MENU_PRINCIPAL --&gt; JUGANDO_MODO_3 : clic / 3 / F3
+  JUGANDO_MODO_1 --&gt; MENU_PRINCIPAL : ESC / MENÚ
+  JUGANDO_MODO_2 --&gt; MENU_PRINCIPAL : ESC / MENÚ
+  JUGANDO_MODO_3 --&gt; MENU_PRINCIPAL : ESC / MENÚ
+  JUGANDO_MODO_1 --&gt; JUGANDO_MODO_2 : F2
+  JUGANDO_MODO_2 --&gt; JUGANDO_MODO_3 : F3
+  JUGANDO_MODO_3 --&gt; JUGANDO_MODO_1 : F1
+</pre></div>
+  <h4>FaseTurno (ModoDueloBatallones)</h4><div class="mermaid-box estado" data-nombre="fase_turno"><pre class="mermaid-src">stateDiagram-v2
+  direction LR
+  [*] --&gt; TURNO_JUGADOR : iniciarModo()
+  TURNO_JUGADOR --&gt; PROYECTIL_EN_VUELO : soltar ratón / tecla X
+  PROYECTIL_EN_VUELO --&gt; PAUSA_IMPACTO : proyectiles.isEmpty()
+  PAUSA_IMPACTO --&gt; TURNO_IA : 1.05 s (tras turno jugador)
+  PAUSA_IMPACTO --&gt; TURNO_JUGADOR : 1.05 s (tras turno IA)
+  TURNO_IA --&gt; PROYECTIL_EN_VUELO : 1.0 s → ejecutarDisparoIA()
+  PAUSA_IMPACTO --&gt; FIN_DUELO : un batallón con vida 0
+  FIN_DUELO --&gt; TURNO_JUGADOR : ENTER (NUEVO DUELO)
+</pre></div>
+  <p>La barra superior persistente (<code>manejarClicBarraSuperior</code>) permite saltar de cualquier modo a cualquier otro;
+  el <code>Inventario</code> compartido viaja con el jugador. En el duelo, <code>PAUSA_IMPACTO</code> dura <b>1.05 s</b> para ver
+  caer al <code>MiembroEscuadron</code> y <code>TURNO_IA</code> espera <b>1.0 s</b> antes de <code>ejecutarDisparoIA()</code>.</p>
+  <h2>2.4 Pipeline de renderizado 2D</h2>
+  <div class="grid3">
+    <div class="card"><h4>① Double buffering</h4><p><code>setDoubleBuffered(true)</code>: cada fotograma se pinta en memoria y se
+    vuelca completo. <code>g.create()</code> + <code>KEY_ANTIALIASING</code> suavizan bordes y texto.</p></div>
+    <div class="card orange"><h4>② Escala virtual</h4><p><code>escala = min(w/1280, h/720)</code>, se centra con
+    <code>translate(offX, offY)</code> y <code>scale(escala, escala)</code>. El clic usa la inversa: <code>(e.getX() − offX) / escala</code>.</p></div>
+    <div class="card aqua"><h4>③ Cámara + shake</h4><p>Mundo de 1860 px dibujado con <code>gw.translate(-camaraX, 0)</code>;
+    Lerp a <code>dt × 6.5</code>; temblor aleatorio <code>± intensidadShake</code>. El HUD va después, fijo.</p></div>
+  </div>
+  <figure class="code">
+  <figcaption><span class="file">WalkingBowmastersPOO.java</span><span class="lines">líneas 80–90</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/WalkingBowmastersPOO.java#L80-L90">ver en GitHub ↗</a></figcaption>
+  <div class="code-title">Transformación inversa: de píxeles de ventana a mundo virtual 1280×720</div>
+  <div class="code-body"><pre class="ln">80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90</pre><pre class="src"><span class="k">private</span> <span class="t">Point2D</span>.<span class="t">Double</span> mapearAMundoVirtual(<span class="t">MouseEvent</span> e) {
+    <span class="k">int</span> w = <span class="t">Math</span>.max(<span class="n">1</span>, getWidth());
+    <span class="k">int</span> h = <span class="t">Math</span>.max(<span class="n">1</span>, getHeight());
+    <span class="k">double</span> escala = <span class="t">Math</span>.min((<span class="k">double</span>) w / <span class="t">ConstantesJuego</span>.<span class="t">ANCHO_VIRTUAL</span>,
+            (<span class="k">double</span>) h / <span class="t">ConstantesJuego</span>.<span class="t">ALTO_VIRTUAL</span>);
+    <span class="k">double</span> offX = (w - <span class="t">ConstantesJuego</span>.<span class="t">ANCHO_VIRTUAL</span> * escala) / <span class="n">2.0</span>;
+    <span class="k">double</span> offY = (h - <span class="t">ConstantesJuego</span>.<span class="t">ALTO_VIRTUAL</span> * escala) / <span class="n">2.0</span>;
+    <span class="k">double</span> vx = (e.getX() - offX) / escala;
+    <span class="k">double</span> vy = (e.getY() - offY) / escala;
+    <span class="k">return</span> <span class="k">new</span> <span class="t">Point2D</span>.<span class="t">Double</span>(vx, vy);
+}</pre></div>
+  
+</figure>
+  <figure class="code">
+  <figcaption><span class="file">WalkingBowmastersPOO.java</span><span class="lines">líneas 350–381</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/WalkingBowmastersPOO.java#L350-L381">ver en GitHub ↗</a></figcaption>
+  <div class="code-title">paintComponent: escalado, centrado y screen shake (primeras líneas)</div>
+  <div class="code-body"><pre class="ln">350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381</pre><pre class="src"><span class="a">@Override</span>
+<span class="k">protected</span> <span class="k">void</span> paintComponent(<span class="t">Graphics</span> g) {
+    <span class="k">super</span>.paintComponent(g);
+    <span class="t">Graphics2D</span> g2 = (<span class="t">Graphics2D</span>) g.create();
+    g2.setRenderingHint(<span class="t">RenderingHints</span>.<span class="t">KEY_ANTIALIASING</span>, <span class="t">RenderingHints</span>.<span class="t">VALUE_ANTIALIAS_ON</span>);
+    g2.setRenderingHint(<span class="t">RenderingHints</span>.<span class="t">KEY_TEXT_ANTIALIASING</span>, <span class="t">RenderingHints</span>.<span class="t">VALUE_TEXT_ANTIALIAS_ON</span>);
+
+    <span class="k">int</span> w = getWidth();
+    <span class="k">int</span> h = getHeight();
+    <span class="k">double</span> escala = <span class="t">Math</span>.min((<span class="k">double</span>) w / <span class="t">ConstantesJuego</span>.<span class="t">ANCHO_VIRTUAL</span>,
+            (<span class="k">double</span>) h / <span class="t">ConstantesJuego</span>.<span class="t">ALTO_VIRTUAL</span>);
+    <span class="k">double</span> offX = (w - <span class="t">ConstantesJuego</span>.<span class="t">ANCHO_VIRTUAL</span> * escala) / <span class="n">2.0</span>;
+    <span class="k">double</span> offY = (h - <span class="t">ConstantesJuego</span>.<span class="t">ALTO_VIRTUAL</span> * escala) / <span class="n">2.0</span>;
+
+    g2.translate(offX, offY);
+    g2.scale(escala, escala);
+    g2.clipRect(<span class="n">0</span>, <span class="n">0</span>, <span class="t">ConstantesJuego</span>.<span class="t">ANCHO_VIRTUAL</span>, <span class="t">ConstantesJuego</span>.<span class="t">ALTO_VIRTUAL</span>);
+
+    <span class="k">if</span> (estado == <span class="t">EstadoPantalla</span>.<span class="t">MENU_PRINCIPAL</span>) {
+        dibujarMenuPrincipal(g2);
+    } <span class="k">else</span> <span class="k">if</span> (modoActivo != <span class="k">null</span>) {
+        <span class="k">double</span> shake = modoActivo.getIntensidadShake();
+        <span class="k">double</span> sx = (shake &gt; <span class="n">0</span>) ? (rng.nextDouble() * <span class="n">2</span> - <span class="n">1</span>) * shake : <span class="n">0</span>;
+        <span class="k">double</span> sy = (shake &gt; <span class="n">0</span>) ? (rng.nextDouble() * <span class="n">2</span> - <span class="n">1</span>) * shake : <span class="n">0</span>;
+        g2.translate(sx, sy);
+        modoActivo.dibujarEscena(g2);
+        g2.translate(-sx, -sy);
+        dibujarHudGlobal(g2);
+    }
+
+    g2.dispose();
+}</pre></div>
+  
+</figure>
+  <figure class="fig "><img src="storyboards/sb1_parallax.png" alt="Storyboard parallax"><figcaption>Storyboard 1 — Recreación con Pillow de las capas parallax (0.05 / 0.18 / 0.45 / 1.0), la cámara en sus dos extremos y el marco de screen shake.</figcaption></figure>
+</section>
+
+<section class="chapter" id="cap3">
+  <div class="chapter-head"><div class="num">Capítulo 3</div><h1>Laboratorio de balística, IA y audio PCM</h1>
+  <p>Simulaciones numéricas ejecutadas con las mismas ecuaciones y constantes del código Java. Nada de lo que ves aquí es ilustrativo:
+  son los números que produce el juego.</p></div>
+  <h2>3.1 Cinemática parabólica con viento</h2>
+  <div class="grid2">
+   <div>
+    <p><b>Velocidad inicial</b> (<code>Arma.calcularVelocidadInicial</code>), con la potencia limitada a [0.05, 1.00] y
+    <code>vMin = 175</code>:</p>
+    <p style="font-size:11pt;text-align:center"><i>v</i><sub>0</sub> = 175 + <i>p</i> · ((velocidadBase + velocidadExtra) − 175)</p>
+    <p>Componentes: <code>vx = v0·cos(θ)</code>, <code>vy = −v0·sin(θ)</code> (negativo porque en Swing la Y crece hacia abajo).
+    Cada fotograma <code>Proyectil.actualizarConViento(dt, viento)</code> integra con Euler semi-implícito:</p>
+   </div>
+   <div><figure class="code">
+  <figcaption><span class="file">entidades/Proyectil.java</span><span class="lines">líneas 57–84</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/Proyectil.java#L57-L84">ver en GitHub ↗</a></figcaption>
+  
+  <div class="code-body"><pre class="ln">57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84</pre><pre class="src"><span class="k">public</span> <span class="k">void</span> actualizarConViento(<span class="k">double</span> dt, <span class="k">double</span> aceleracionViento) {
+    <span class="k">if</span> (!activo) <span class="k">return</span>;
+    <span class="k">if</span> (!yaLanzado) {
+        retrasoLanzamiento -= dt;
+        <span class="k">if</span> (retrasoLanzamiento &lt;= <span class="n">0.0</span>) {
+            yaLanzado = <span class="k">true</span>;
+        } <span class="k">else</span> {
+            <span class="k">return</span>;
+        }
+    }
+    estela.add(<span class="k">new</span> <span class="t">Point2D</span>.<span class="t">Double</span>(x, y));
+    <span class="k">if</span> (estela.size() &gt; (tipo == <span class="t">TipoProyectil</span>.<span class="t">GRANADA</span> ? <span class="n">20</span> : <span class="n">12</span>)) {
+        estela.remove(<span class="n">0</span>);
+    }
+
+    vx += aceleracionViento * dt;
+    vy += <span class="t">ConstantesJuego</span>.<span class="t">GRAVEDAD_BASE</span> * factorGravedad * dt;
+    x += vx * dt;
+    y += vy * dt;
+
+    <span class="k">if</span> (tipo == <span class="t">TipoProyectil</span>.<span class="t">HOJA_KATANA</span>) {
+        rotacion += <span class="n">18.0</span> * dt;
+    } <span class="k">else</span> <span class="k">if</span> (tipo == <span class="t">TipoProyectil</span>.<span class="t">GRANADA</span>) {
+        rotacion += <span class="n">7.5</span> * dt;
+    } <span class="k">else</span> {
+        rotacion = <span class="t">Math</span>.atan2(vy, vx);
+    }
+}</pre></div>
+  
+</figure></div>
+  </div>
+  <table><tr><th>Arma</th><th>factorGravedad</th><th>g efectiva (px/s²)</th><th>base + extra</th><th>v0 al 5 %</th><th>v0 al 100 %</th><th>Alcance ideal 45° (v²/g)</th></tr>
+  <tr><td><b>RifleAsalto</b></td><td>0.45</td><td>243</td><td>460 + 640</td><td>221.2</td><td>1100</td><td>4.979</td></tr><tr><td><b>LanzaGranadas</b></td><td>1.00</td><td>540</td><td>300 + 690</td><td>215.8</td><td>990</td><td>1.815</td></tr><tr><td><b>Revolver</b></td><td>0.55</td><td>297</td><td>410 + 620</td><td>217.8</td><td>1030</td><td>3.572</td></tr><tr><td><b>EspadaKatana</b></td><td>0.90</td><td>486</td><td>310 + 570</td><td>210.2</td><td>880</td><td>1.593</td></tr></table>
+  <figure class="fig chart"><img src="graficos/g1_balistica.svg" alt="Curvas balísticas"><figcaption>Gráfico 1 — Integración a 60 Hz de las 4 armas (A: 100 %, B: 5 %) y del LanzaGranadas con viento ±125 px/s² sobre el mapa real del duelo (autobús, coche y cajas de impacto de los batallones).</figcaption></figure>
+  <div class="card yellow"><h4>Cómo explicarlo en 20 segundos</h4><p>“El rifle tiene gravedad 0.45 y sale a 1100 px/s: casi una línea
+  recta que sale de la pantalla. La granada tiene gravedad completa: al 100 % cae justo en la zona enemiga, y el viento de ±125 la mueve
+  cientos de píxeles. Por eso en el duelo el viento decide la partida. La tecla X al 5 % es un ‘lob’ corto de menos de 100 px.”</p></div>
+  <figure class="code">
+  <figcaption><span class="file">armas/Arma.java</span><span class="lines">líneas 84–89</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/armas/Arma.java#L84-L89">ver en GitHub ↗</a></figcaption>
+  
+  <div class="code-body"><pre class="ln">84
+85
+86
+87
+88
+89</pre><pre class="src"><span class="k">public</span> <span class="k">double</span> calcularVelocidadInicial(<span class="k">double</span> potencia) {
+    <span class="k">double</span> p = <span class="t">ConstantesJuego</span>.limitar(potencia, <span class="n">0.05</span>, <span class="n">1.0</span>);
+    <span class="k">double</span> vMin = <span class="n">175.0</span>;
+    <span class="k">double</span> vMax = getVelocidadBase() + getVelocidadExtra();
+    <span class="k">return</span> vMin + p * (vMax - vMin);
+}</pre></div>
+  
+</figure>
+  <h2>3.2 Hitboxes, headshot y daño en área</h2>
+  <figure class="fig "><img src="storyboards/sb2_hitboxes.png" alt="Hitboxes"><figcaption>Storyboard 2 — A: caja del Zombie y franja de headshot (32 % superior, por encima de zy − zh·0.68). B: caja unificada del Batallon (±78 × 95) y anillos de la explosión AoE.</figcaption></figure>
+  <p>En <code>ModoSupervivenciaHordas</code> el daño final se calcula con la <b>sobrecarga</b> de tres parámetros:
+  <code>z.calcularDano(p.getDano(), mult, p.isIgnoraArmadura())</code>, donde <code>mult = p.getMultiplicadorCritico()</code> solo si es headshot.
+  La granada se crea con <code>radioExplosion = 145.0</code>, <code>multiplicadorCritico = 1.15</code> e <code>ignoraArmadura = true</code>.</p>
+  <h2>3.3 IA balística progresiva</h2>
+  <p><code>ejecutarDisparoIA()</code> hace una búsqueda exhaustiva: 11 ángulos (122°…152°, paso 3°) × 14 potencias (0.45…0.97, paso 0.04)
+  = <b>154 trayectorias simuladas</b> con el viento actual y los obstáculos, y se queda con la que cae más cerca de
+  <code>batallonJugador.getX()</code>. Luego “se equivoca a propósito” con un error que decrece por turno:</p>
+  <p style="text-align:center;font-size:10.5pt"><code>errorMaximo = Math.max(0.015, 0.14 - (turnoIA - 1) * 0.025)</code></p>
+  <figure class="fig chart"><img src="graficos/g2_ia.svg" alt="IA"><figcaption>Gráfico 2 — Izquierda: errorMaximo exacto por turno (llega al piso 0.015 en el turno 6). Derecha: probabilidad de impacto estimada con 3000 disparos Monte Carlo por turno (arma y viento aleatorios, misma búsqueda de 154 trayectorias, impacto directo en la caja o AoE de granada).</figcaption></figure>
+  <table><tr><th>turnoIA</th><th>errorMaximo</th><th>ruido de ángulo (±0.7·e)</th><th>ruido de potencia</th><th>P(impacto) simulada</th><th>error mediano</th></tr><tr><td>1</td><td>0.140</td><td>±5.61°</td><td>±14.0 %</td><td>37 %</td><td>206 px</td></tr><tr><td>2</td><td>0.115</td><td>±4.61°</td><td>±11.5 %</td><td>44 %</td><td>154 px</td></tr><tr><td>3</td><td>0.090</td><td>±3.61°</td><td>±9.0 %</td><td>54 %</td><td>96 px</td></tr><tr><td>4</td><td>0.065</td><td>±2.61°</td><td>±6.5 %</td><td>69 %</td><td>75 px</td></tr><tr><td>5</td><td>0.040</td><td>±1.60°</td><td>±4.0 %</td><td>81 %</td><td>72 px</td></tr><tr><td>6</td><td>0.015</td><td>±0.60°</td><td>±1.5 %</td><td>97 %</td><td>70 px</td></tr><tr><td>7</td><td>0.015</td><td>±0.60°</td><td>±1.5 %</td><td>96 %</td><td>71 px</td></tr><tr><td>8</td><td>0.015</td><td>±0.60°</td><td>±1.5 %</td><td>96 %</td><td>71 px</td></tr></table>
+  <div class="grid2"><figure class="code">
+  <figcaption><span class="file">modos/ModoDueloBatallones.java</span><span class="lines">líneas 288–326</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/modos/ModoDueloBatallones.java#L288-L326">ver en GitHub ↗</a></figcaption>
+  <div class="code-title">Búsqueda + error estocástico</div>
+  <div class="code-body"><pre class="ln">288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326</pre><pre class="src"><span class="k">private</span> <span class="k">void</span> ejecutarDisparoIA() {
+    turnoIA++;
+    <span class="k">int</span> idxArma = rng.nextInt(<span class="n">3</span>);
+    <span class="t">Arma</span> armaIA = batallonEnemigo.getInventario().getArma(idxArma);
+    armaIA.recargar(<span class="n">10</span>);
+    batallonEnemigo.setArmaActual(armaIA);
+
+    <span class="k">double</span> xOrigen = batallonEnemigo.getX() - <span class="n">32</span>;
+    <span class="k">double</span> yOrigen = batallonEnemigo.getY() - <span class="n">56</span>;
+    <span class="k">double</span> mejorAngulo = <span class="t">Math</span>.toRadians(<span class="n">136</span>);
+    <span class="k">double</span> mejorPotencia = <span class="n">0.78</span>;
+    <span class="k">double</span> mejorErrorDist = <span class="t">Double</span>.<span class="t">MAX_VALUE</span>;
+
+    <span class="k">for</span> (<span class="k">int</span> aDeg = <span class="n">122</span>; aDeg &lt;= <span class="n">152</span>; aDeg += <span class="n">3</span>) {
+        <span class="k">double</span> ang = <span class="t">Math</span>.toRadians(aDeg);
+        <span class="k">for</span> (<span class="k">double</span> pot = <span class="n">0.45</span>; pot &lt;= <span class="n">1.0</span>; pot += <span class="n">0.04</span>) {
+            <span class="k">double</span> distImpacto = simularTrayectoria(xOrigen, yOrigen, ang, pot, armaIA);
+            <span class="k">double</span> err = <span class="t">Math</span>.abs(distImpacto - batallonJugador.getX());
+            <span class="k">if</span> (err &lt; mejorErrorDist) {
+                mejorErrorDist = err;
+                mejorAngulo = ang;
+                mejorPotencia = pot;
+            }
+        }
+    }
+
+    <span class="k">double</span> errorMaximo = <span class="t">Math</span>.max(<span class="n">0.015</span>, <span class="n">0.14</span> - (turnoIA - <span class="n">1</span>) * <span class="n">0.025</span>);
+    <span class="k">double</span> anguloFinal = mejorAngulo + (rng.nextDouble() * <span class="n">2.0</span> - <span class="n">1.0</span>) * errorMaximo * <span class="n">0.7</span>;
+    <span class="k">double</span> potenciaFinal = <span class="t">ConstantesJuego</span>.limitar(
+            mejorPotencia + (rng.nextDouble() * <span class="n">2.0</span> - <span class="n">1.0</span>) * errorMaximo, <span class="n">0.25</span>, <span class="n">1.0</span>);
+
+    <span class="t">List</span>&lt;<span class="t">Proyectil</span>&gt; disparos = batallonEnemigo.dispararEnUnisono(anguloFinal, potenciaFinal);
+    reproducirSonidoArma(armaIA);
+    proyectiles.addAll(disparos);
+    generarImpacto(xOrigen, yOrigen, <span class="k">new</span> <span class="t">Color</span>(<span class="n">255</span>, <span class="n">200</span>, <span class="n">100</span>), <span class="n">8</span>);
+    botinProcesadoEnTurno = <span class="k">false</span>;
+    ultimoDisparoFueJugador = <span class="k">false</span>;
+    fase = <span class="t">FaseTurno</span>.<span class="t">PROYECTIL_EN_VUELO</span>;
+}</pre></div>
+  
+</figure><figure class="code">
+  <figcaption><span class="file">modos/ModoDueloBatallones.java</span><span class="lines">líneas 328–348</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/modos/ModoDueloBatallones.java#L328-L348">ver en GitHub ↗</a></figcaption>
+  <div class="code-title">Simulación interna (dtSim = 0.02, 220 pasos)</div>
+  <div class="code-body"><pre class="ln">328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348</pre><pre class="src"><span class="k">private</span> <span class="k">double</span> simularTrayectoria(<span class="k">double</span> x0, <span class="k">double</span> y0, <span class="k">double</span> angulo, <span class="k">double</span> potencia, <span class="t">Arma</span> arma) {
+    <span class="k">double</span> v0 = arma.calcularVelocidadInicial(potencia);
+    <span class="k">double</span> vx = v0 * <span class="t">Math</span>.cos(angulo);
+    <span class="k">double</span> vy = -v0 * <span class="t">Math</span>.sin(angulo);
+    <span class="k">double</span> gEff = <span class="t">ConstantesJuego</span>.<span class="t">GRAVEDAD_BASE</span> * arma.getFactorGravedad();
+    <span class="k">double</span> px = x0, py = y0;
+    <span class="k">double</span> dtSim = <span class="n">0.02</span>;
+
+    <span class="k">for</span> (<span class="k">int</span> step = <span class="n">0</span>; step &lt; <span class="n">220</span>; step++) {
+        vx += vientoActual * dtSim;
+        vy += gEff * dtSim;
+        px += vx * dtSim;
+        py += vy * dtSim;
+
+        <span class="k">for</span> (<span class="t">ObstaculoTerreno</span> obs : obstaculos) {
+            <span class="k">if</span> (obs.colisiona(px, py)) <span class="k">return</span> px;
+        }
+        <span class="k">if</span> (py &gt;= <span class="t">ConstantesJuego</span>.<span class="t">Y_SUELO</span>) <span class="k">return</span> px;
+    }
+    <span class="k">return</span> px;
+}</pre></div>
+  
+</figure></div>
+  <h2>3.4 Motor de audio PCM sintetizado</h2>
+  <p><code>GestorSonido</code> no carga archivos: en su bloque <code>static</code> sintetiza 11 efectos en arreglos <code>byte[]</code>
+  (16-bit little-endian, mono, 44 100 Hz) y los guarda en <code>CACHE</code>. Hay tres sintetizadores: <b>barrido</b> (seno con
+  frecuencia lineal; modo metálico para la katana), <b>disparo</b> (tono con caída exponencial mezclado con ruido filtrado
+  paso-bajo <code>filtro = filtro·0.45 + ruido·0.55</code>, envolvente <code>(1 − t)<sup>1.9</sup></code>) y <b>arpegio</b> (notas musicales:
+  do-mi-sol para suministro/victoria, descendente para derrota).</p>
+  <figure class="fig chart"><img src="graficos/g4_audio_pcm.svg" alt="Audio PCM"><figcaption>Gráfico 4 — Formas de onda reales (bandas min/máx por bin) y envolvente × volumen de cuatro efectos, generadas con los mismos parámetros y semillas de java.util.Random que GestorSonido.java.</figcaption></figure>
+  <table class="audio-table"><tr><th>Clave CACHE</th><th>Método público</th><th>Sintetizador</th><th>Parámetros</th><th>Duración</th><th>Vol.</th><th>Escuchar</th></tr><tr><td>hover</td><td><code>reproducirHoverMenu()</code></td><td>sintetizarBarrido</td><td>680→920 Hz</td><td>40 ms</td><td>0.14</td><td><a href="audio/hover.wav">▶ hover.wav</a></td></tr><tr><td>click</td><td><code>reproducirClickMenu()</code></td><td>sintetizarBarrido</td><td>520→1080 Hz</td><td>65 ms</td><td>0.22</td><td><a href="audio/click.wav">▶ click.wav</a></td></tr><tr><td>disparo_rifle</td><td><code>reproducirDisparoRifle()</code></td><td>sintetizarDisparo</td><td>220→75 Hz · ruido 65%</td><td>110 ms</td><td>0.34</td><td><a href="audio/disparo_rifle.wav">▶ disparo_rifle.wav</a></td></tr><tr><td>disparo_revolver</td><td><code>reproducirDisparoRevolver()</code></td><td>sintetizarDisparo</td><td>175→52 Hz · ruido 58%</td><td>180 ms</td><td>0.42</td><td><a href="audio/disparo_revolver.wav">▶ disparo_revolver.wav</a></td></tr><tr><td>lanzagranadas</td><td><code>reproducirLanzagranadas()</code></td><td>sintetizarDisparo</td><td>130→48 Hz · ruido 22%</td><td>170 ms</td><td>0.40</td><td><a href="audio/lanzagranadas.wav">▶ lanzagranadas.wav</a></td></tr><tr><td>explosion</td><td><code>reproducirExplosion()</code></td><td>sintetizarDisparo</td><td>95→28 Hz · ruido 80%</td><td>460 ms</td><td>0.55</td><td><a href="audio/explosion.wav">▶ explosion.wav</a></td></tr><tr><td>katana</td><td><code>reproducirCorteKatana()</code></td><td>sintetizarBarrido</td><td>1350→2900 Hz · metálico (×2.41 + ruido)</td><td>150 ms</td><td>0.28</td><td><a href="audio/katana.wav">▶ katana.wav</a></td></tr><tr><td>impacto</td><td><code>reproducirImpacto()</code></td><td>sintetizarDisparo</td><td>190→68 Hz · ruido 45%</td><td>85 ms</td><td>0.26</td><td><a href="audio/impacto.wav">▶ impacto.wav</a></td></tr><tr><td>suministro</td><td><code>reproducirSuministro()</code></td><td>sintetizarArpegio</td><td>notas 523.25, 659.25, 783.99 Hz · 65 ms/nota</td><td>195 ms</td><td>0.24</td><td><a href="audio/suministro.wav">▶ suministro.wav</a></td></tr><tr><td>victoria</td><td><code>reproducirVictoria()</code></td><td>sintetizarArpegio</td><td>notas 523.25, 659.25, 783.99, 1046.5 Hz · 110 ms/nota</td><td>440 ms</td><td>0.28</td><td><a href="audio/victoria.wav">▶ victoria.wav</a></td></tr><tr><td>derrota</td><td><code>reproducirDerrota()</code></td><td>sintetizarArpegio</td><td>notas 392, 329.63, 261.63, 196 Hz · 130 ms/nota</td><td>520 ms</td><td>0.28</td><td><a href="audio/derrota.wav">▶ derrota.wav</a></td></tr></table>
+  <div class="grid2">
+   <div class="card dark"><h3>Ficha: audio asíncrono</h3><p>• <code>ExecutorService POOL = Executors.newCachedThreadPool(...)</code> con hilos
+   <b>daemon</b> “AudioFX-Worker” (no impiden cerrar la JVM).<br>• <code>AtomicInteger VOCES_ACTIVAS</code> y <code>MAX_VOCES = 10</code>: si ya
+   suenan 10, el efecto se descarta en vez de saturar.<br>• Cada voz abre su <code>SourceDataLine</code>, escribe, hace <code>drain()</code> y
+   cierra en <code>finally</code>.<br>• <code>volatile boolean sonidoActivo</code>: tecla <code>[M]</code>.</p></div>
+   <div><figure class="code">
+  <figcaption><span class="file">audio/GestorSonido.java</span><span class="lines">líneas 121–154</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/audio/GestorSonido.java#L121-L154">ver en GitHub ↗</a></figcaption>
+  
+  <div class="code-body"><pre class="ln">121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154</pre><pre class="src"><span class="k">private</span> <span class="k">static</span> <span class="k">void</span> reproducir(<span class="k">final</span> <span class="t">String</span> clave) {
+    <span class="k">if</span> (!sonidoActivo) <span class="k">return</span>;
+    <span class="k">final</span> <span class="k">byte</span>[] datos = <span class="t">CACHE</span>.get(clave);
+    <span class="k">if</span> (datos == <span class="k">null</span>) <span class="k">return</span>;
+    <span class="k">if</span> (<span class="t">VOCES_ACTIVAS</span>.get() &gt;= <span class="t">MAX_VOCES</span>) <span class="k">return</span>;
+
+    <span class="t">VOCES_ACTIVAS</span>.incrementAndGet();
+    <span class="t">POOL</span>.submit(<span class="k">new</span> <span class="t">Runnable</span>() {
+        <span class="a">@Override</span>
+        <span class="k">public</span> <span class="k">void</span> run() {
+            <span class="t">SourceDataLine</span> line = <span class="k">null</span>;
+            <span class="k">try</span> {
+                <span class="t">DataLine</span>.<span class="t">Info</span> info = <span class="k">new</span> <span class="t">DataLine</span>.<span class="t">Info</span>(<span class="t">SourceDataLine</span>.<span class="k">class</span>, <span class="t">FORMATO</span>);
+                <span class="k">if</span> (!<span class="t">AudioSystem</span>.isLineSupported(info)) <span class="k">return</span>;
+                line = (<span class="t">SourceDataLine</span>) <span class="t">AudioSystem</span>.getLine(info);
+                line.open(<span class="t">FORMATO</span>, <span class="t">Math</span>.min(datos.length, <span class="n">8192</span>));
+                line.start();
+                line.write(datos, <span class="n">0</span>, datos.length);
+                line.drain();
+            } <span class="k">catch</span> (<span class="t">Exception</span> ignored) {
+                <span class="c">// Evita fallos en sistemas sin tarjeta de audio</span>
+            } <span class="k">finally</span> {
+                <span class="k">if</span> (line != <span class="k">null</span>) {
+                    <span class="k">try</span> {
+                        line.stop();
+                        line.close();
+                    } <span class="k">catch</span> (<span class="t">Exception</span> ignored) {
+                    }
+                }
+                <span class="t">VOCES_ACTIVAS</span>.decrementAndGet();
+            }
+        }
+    });
+}</pre></div>
+  
+</figure></div>
+  </div>
+  <div class="card aqua"><h4>Guía de escucha</h4><p>Abre <code>estudio_audiovisual/audio/00_todos_los_efectos_en_orden.wav</code>: suenan los 11 efectos
+  en el orden de la tabla con 0.6 s de silencio entre ellos. Asocia cada sonido a su acción (hover del menú, disparo del rifle,
+  explosión…). En la demo, cuando suene uno, nómbralo: “eso que escucharon es <code>sintetizarDisparo</code> con 80 % de ruido”.
+  Los enlaces ▶ de la tabla abren cada archivo (en Acrobat/SumatraPDF/Foxit, con el PDF junto a la carpeta <code>estudio_audiovisual/</code>).</p>
+  <div class="qr-row"><a class="qr" href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/tree/main/estudio_audiovisual/audio"><img src="qr/qr_audio_dir.svg" alt="QR Audios en GitHub*"><span>Audios en GitHub*</span></a><a class="qr" href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/audio/GestorSonido.java"><img src="qr/qr_sonido.svg" alt="QR GestorSonido.java"><span>GestorSonido.java</span></a></div>
+  <p class="small">* El QR de audios funciona cuando la carpeta <code>estudio_audiovisual/</code> se suba al repositorio.</p></div>
+</section>
+
+<section class="chapter" id="cap4">
+  <div class="chapter-head"><div class="num">Capítulo 4</div><h1>Los 6 pilares POO con evidencia de código</h1>
+  <p>Para cada pilar: qué es, dónde está exactamente y el fragmento real que debes mostrar en pantalla.</p></div>
+  <h2>4.1 Abstracción</h2>
+  <div class="card"><p><b>Qué es:</b> definir <i>qué</i> hace algo sin decir <i>cómo</i>. <b>Dónde:</b> 3 interfaces
+  (<code>Renderizable</code>, <code>Atacable</code>, <code>ModoJuego</code>) y 5 clases abstractas (<code>EntidadJuego</code>, <code>Combatiente</code>,
+  <code>Zombie</code>, <code>Arma</code>, <code>BaseModoJuego</code>). El motor guarda un <code>BaseModoJuego modoActivo</code> y nunca pregunta cuál es.</p></div>
+  <div class="grid2"><figure class="code">
+  <figcaption><span class="file">interfaces/ModoJuego.java</span><span class="lines">líneas 9–14</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/interfaces/ModoJuego.java#L9-L14">ver en GitHub ↗</a></figcaption>
+  <div class="code-title">Contrato de todo modo de juego</div>
+  <div class="code-body"><pre class="ln">9
+10
+11
+12
+13
+14</pre><pre class="src"><span class="k">public</span> <span class="k">interface</span> <span class="t">ModoJuego</span> {
+    <span class="k">void</span> iniciarModo();
+    <span class="k">void</span> actualizarLogica(<span class="k">double</span> dt);
+    <span class="k">void</span> dibujarEscena(<span class="t">Graphics2D</span> g);
+    <span class="t">String</span> getNombreModo();
+}</pre></div>
+  
+</figure><figure class="code">
+  <figcaption><span class="file">interfaces/Renderizable.java</span><span class="lines">líneas 9–11</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/interfaces/Renderizable.java#L9-L11">ver en GitHub ↗</a></figcaption>
+  <div class="code-title">Contrato de todo lo que se dibuja</div>
+  <div class="code-body"><pre class="ln">9
+10
+11</pre><pre class="src"><span class="k">public</span> <span class="k">interface</span> <span class="t">Renderizable</span> {
+    <span class="k">void</span> renderizar(<span class="t">Graphics2D</span> g);
+}</pre></div>
+  
+</figure></div>
+  <h2>4.2 Encapsulamiento</h2>
+  <div class="card aqua"><p><b>Qué es:</b> el estado es <code>private</code> y sólo cambia por métodos que validan. <b>Dónde:</b>
+  <code>Batallon.miembros</code>, <code>Inventario.armas/suministros/recursosAcumulados</code>, <code>Suministro.cantidad</code>,
+  <code>GestorSonido.CACHE/sonidoActivo</code>. Nadie puede dejar una cantidad negativa: <code>consumirUno()</code> lo impide.</p></div>
+  <div class="grid2"><figure class="code">
+  <figcaption><span class="file">inventario/Suministro.java</span><span class="lines">líneas 75–79</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/inventario/Suministro.java#L75-L79">ver en GitHub ↗</a></figcaption>
+  
+  <div class="code-body"><pre class="ln">75
+76
+77
+78
+79</pre><pre class="src"><span class="k">public</span> <span class="k">boolean</span> consumirUno() {
+    <span class="k">if</span> (cantidad &lt;= <span class="n">0</span>) <span class="k">return</span> <span class="k">false</span>;
+    cantidad--;
+    <span class="k">return</span> <span class="k">true</span>;
+}</pre></div>
+  
+</figure><figure class="code">
+  <figcaption><span class="file">inventario/Inventario.java</span><span class="lines">líneas 71–78</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/inventario/Inventario.java#L71-L78">ver en GitHub ↗</a></figcaption>
+  
+  <div class="code-body"><pre class="ln">71
+72
+73
+74
+75
+76
+77
+78</pre><pre class="src"><span class="k">public</span> <span class="k">boolean</span> usarSuministro(<span class="t">TipoSuministro</span> tipo) {
+    <span class="k">for</span> (<span class="t">Suministro</span> s : suministros) {
+        <span class="k">if</span> (s.getTipo() == tipo) {
+            <span class="k">return</span> s.consumirUno();
+        }
+    }
+    <span class="k">return</span> <span class="k">false</span>;
+}</pre></div>
+  
+</figure></div>
+  <h2>4.3 Herencia</h2>
+  <div class="card yellow"><p><b>Qué es:</b> una subclase reutiliza y especializa a su padre. Tres jerarquías:
+  <code>EntidadJuego → Combatiente → Superviviente | Zombie (ZombieCaminante, ZombieCorredor, ZombieBlindado) | SaqueadorRival | Batallon</code>;
+  <code>Arma → RifleAsalto, LanzaGranadas, Revolver, EspadaKatana</code>; <code>BaseModoJuego → ModoSupervivenciaHordas, ModoDueloBatallones, ModoArmeriaCampoTiro</code>.
+  Todas heredan <code>x, y, vida, armadura</code>, <code>calcularDano</code> y <code>dibujarBarraVida</code>; los modos heredan cámara, partículas y tecla X.</p></div>
+  <figure class="code">
+  <figcaption><span class="file">entidades/Batallon.java</span><span class="lines">líneas 51–65</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/Batallon.java#L51-L65">ver en GitHub ↗</a></figcaption>
+  <div class="code-title">Batallon llama a super(...) de Combatiente e inyecta el inventario</div>
+  <div class="code-body"><pre class="ln">51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65</pre><pre class="src"><span class="k">public</span> <span class="t">Batallon</span>(<span class="t">String</span> nombre, <span class="k">double</span> x, <span class="k">double</span> y, <span class="k">int</span> vidaGlobal, <span class="k">int</span> armadura,
+                <span class="k">boolean</span> esJugador, <span class="t">Inventario</span> inventarioCompartido) {
+    <span class="k">super</span>(nombre, x, y, vidaGlobal, armadura, inventarioCompartido);
+    <span class="k">this</span>.esJugador = esJugador;
+    <span class="k">this</span>.mirandoDerecha = esJugador;
+    <span class="k">this</span>.anguloApuntado = esJugador ? <span class="t">Math</span>.toRadians(<span class="n">35</span>) : <span class="t">Math</span>.toRadians(<span class="n">145</span>);
+
+    <span class="k">if</span> (inventarioCompartido != <span class="k">null</span> &amp;&amp; !inventarioCompartido.getArmas().isEmpty()) {
+        <span class="k">this</span>.armaActual = inventarioCompartido.getArma(<span class="n">0</span>);
+    } <span class="k">else</span> {
+        <span class="k">this</span>.armaActual = <span class="k">new</span> <span class="t">RifleAsalto</span>();
+    }
+
+    inicializarMiembros();
+}</pre></div>
+  
+</figure>
+  <h2>4.4 Polimorfismo</h2>
+  <h3>Sobreescritura (dinámico, en tiempo de ejecución)</h3>
+  <p><code>Superviviente.disparar(...)</code> llama a <code>armaActual.atacar(...)</code> sin saber qué arma tiene. La JVM elige la versión
+  correcta: ráfaga de 3 balas (<code>RifleAsalto</code>) o granada AoE (<code>LanzaGranadas</code>).</p>
+  <figure class="code">
+  <figcaption><span class="file">entidades/Superviviente.java</span><span class="lines">líneas 37–47</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/Superviviente.java#L37-L47">ver en GitHub ↗</a></figcaption>
+  
+  <div class="code-body"><pre class="ln">37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre><pre class="src"><span class="k">public</span> <span class="t">List</span>&lt;<span class="t">Proyectil</span>&gt; disparar(<span class="k">double</span> angulo, <span class="k">double</span> potencia) {
+    <span class="k">this</span>.anguloApuntado = angulo;
+    <span class="k">this</span>.potenciaApuntado = potencia;
+    <span class="k">if</span> (armaActual == <span class="k">null</span> || !armaActual.puedeDisparar()) {
+        <span class="k">return</span> <span class="k">new</span> <span class="t">ArrayList</span>&lt;<span class="t">Proyectil</span>&gt;();
+    }
+    <span class="k">this</span>.animRetroceso = <span class="n">1.0</span>;
+    <span class="k">double</span> xBoca = x + <span class="n">22</span> * <span class="t">Math</span>.cos(angulo);
+    <span class="k">double</span> yBoca = (y - <span class="n">54</span>) - <span class="n">22</span> * <span class="t">Math</span>.sin(angulo);
+    <span class="k">return</span> armaActual.atacar(xBoca, yBoca, angulo, potencia, <span class="k">true</span>);
+}</pre></div>
+  
+</figure>
+  <div class="grid2"><figure class="code">
+  <figcaption><span class="file">armas/RifleAsalto.java</span><span class="lines">líneas 19–38</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/armas/RifleAsalto.java#L19-L38">ver en GitHub ↗</a></figcaption>
+  <div class="code-title">@Override en RifleAsalto</div>
+  <div class="code-body"><pre class="ln">19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre><pre class="src"><span class="a">@Override</span>
+<span class="k">public</span> <span class="t">List</span>&lt;<span class="t">Proyectil</span>&gt; atacar(<span class="k">double</span> xOrigen, <span class="k">double</span> yOrigen, <span class="k">double</span> angulo, <span class="k">double</span> potencia) {
+    <span class="t">List</span>&lt;<span class="t">Proyectil</span>&gt; proyectiles = <span class="k">new</span> <span class="t">ArrayList</span>&lt;<span class="t">Proyectil</span>&gt;();
+    <span class="k">if</span> (!puedeDisparar()) <span class="k">return</span> proyectiles;
+
+    <span class="k">int</span> balasRafaga = (municion &lt; <span class="n">0</span>) ? <span class="n">3</span> : <span class="t">Math</span>.min(<span class="n">3</span>, municion);
+    consumirMunicionYRegistrar(balasRafaga);
+    <span class="k">double</span> v0 = calcularVelocidadInicial(potencia);
+    <span class="k">double</span>[] dispersiones = {<span class="n">0.0</span>, -<span class="n">0.022</span>, <span class="n">0.022</span>};
+
+    <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; balasRafaga; i++) {
+        <span class="k">double</span> ang = angulo + dispersiones[i];
+        <span class="k">double</span> vx = v0 * <span class="t">Math</span>.cos(ang);
+        <span class="k">double</span> vy = -v0 * <span class="t">Math</span>.sin(ang);
+        proyectiles.add(<span class="k">new</span> <span class="t">Proyectil</span>(
+                xOrigen, yOrigen, vx, vy, danoBase, getFactorGravedad(),
+                <span class="k">true</span>, <span class="t">TipoProyectil</span>.<span class="t">BALA_RIFLE</span>, <span class="n">0.0</span>, <span class="n">1.35</span>, <span class="k">false</span>, i * <span class="n">0.075</span>));
+    }
+    <span class="k">return</span> proyectiles;
+}</pre></div>
+  
+</figure><figure class="code">
+  <figcaption><span class="file">armas/LanzaGranadas.java</span><span class="lines">líneas 19–32</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/armas/LanzaGranadas.java#L19-L32">ver en GitHub ↗</a></figcaption>
+  <div class="code-title">@Override en LanzaGranadas</div>
+  <div class="code-body"><pre class="ln">19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre><pre class="src"><span class="a">@Override</span>
+<span class="k">public</span> <span class="t">List</span>&lt;<span class="t">Proyectil</span>&gt; atacar(<span class="k">double</span> xOrigen, <span class="k">double</span> yOrigen, <span class="k">double</span> angulo, <span class="k">double</span> potencia) {
+    <span class="t">List</span>&lt;<span class="t">Proyectil</span>&gt; proyectiles = <span class="k">new</span> <span class="t">ArrayList</span>&lt;<span class="t">Proyectil</span>&gt;();
+    <span class="k">if</span> (!puedeDisparar()) <span class="k">return</span> proyectiles;
+
+    consumirMunicionYRegistrar(<span class="n">1</span>);
+    <span class="k">double</span> v0 = calcularVelocidadInicial(potencia);
+    <span class="k">double</span> vx = v0 * <span class="t">Math</span>.cos(angulo);
+    <span class="k">double</span> vy = -v0 * <span class="t">Math</span>.sin(angulo);
+    proyectiles.add(<span class="k">new</span> <span class="t">Proyectil</span>(
+            xOrigen, yOrigen, vx, vy, danoBase, getFactorGravedad(),
+            <span class="k">true</span>, <span class="t">TipoProyectil</span>.<span class="t">GRANADA</span>, <span class="n">145.0</span>, <span class="n">1.15</span>, <span class="k">true</span>, <span class="n">0.0</span>));
+    <span class="k">return</span> proyectiles;
+}</pre></div>
+  
+</figure></div>
+  <h3>Sobrecarga (estático, en compilación)</h3>
+  <p>Mismo nombre, distinta lista de parámetros. Las dos versiones cortas delegan en la completa (sin código duplicado):</p>
+  <figure class="code">
+  <figcaption><span class="file">entidades/Combatiente.java</span><span class="lines">líneas 47–49</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/Combatiente.java#L47-L49">ver en GitHub ↗</a></figcaption>
+  
+  <div class="code-body"><pre class="ln">47
+48
+49</pre><pre class="src"><span class="k">public</span> <span class="k">int</span> calcularDano(<span class="k">int</span> base) {
+    <span class="k">return</span> calcularDano(base, <span class="n">1.0</span>, <span class="k">false</span>);
+}</pre></div>
+  
+</figure><figure class="code">
+  <figcaption><span class="file">entidades/Combatiente.java</span><span class="lines">líneas 51–53</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/Combatiente.java#L51-L53">ver en GitHub ↗</a></figcaption>
+  
+  <div class="code-body"><pre class="ln">51
+52
+53</pre><pre class="src"><span class="k">public</span> <span class="k">int</span> calcularDano(<span class="k">int</span> base, <span class="k">double</span> multiplicadorCritico) {
+    <span class="k">return</span> calcularDano(base, multiplicadorCritico, <span class="k">false</span>);
+}</pre></div>
+  
+</figure><figure class="code">
+  <figcaption><span class="file">entidades/Combatiente.java</span><span class="lines">líneas 55–62</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/Combatiente.java#L55-L62">ver en GitHub ↗</a></figcaption>
+  <div class="code-title">Versión completa</div>
+  <div class="code-body"><pre class="ln">55
+56
+57
+58
+59
+60
+61
+62</pre><pre class="src"><span class="k">public</span> <span class="k">int</span> calcularDano(<span class="k">int</span> base, <span class="k">double</span> multiplicadorCritico, <span class="k">boolean</span> ignoraArmadura) {
+    <span class="k">double</span> bruto = base * multiplicadorCritico;
+    <span class="k">if</span> (ignoraArmadura) {
+        <span class="k">return</span> <span class="t">Math</span>.max(<span class="n">1</span>, (<span class="k">int</span>) <span class="t">Math</span>.round(bruto));
+    }
+    <span class="k">int</span> reduccion = (<span class="k">int</span>) <span class="t">Math</span>.round(armadura * <span class="n">0.55</span>);
+    <span class="k">return</span> <span class="t">Math</span>.max(<span class="n">2</span>, (<span class="k">int</span>) <span class="t">Math</span>.round(bruto) - reduccion);
+}</pre></div>
+  <div class="code-note">La armadura reduce round(armadura × 0.55) puntos, con un mínimo de 2 de daño; ignoraArmadura (granada) salta la reducción.</div>
+</figure>
+  <figure class="code">
+  <figcaption><span class="file">armas/Arma.java</span><span class="lines">líneas 39–45</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/armas/Arma.java#L39-L45">ver en GitHub ↗</a></figcaption>
+  <div class="code-title">Sobrecarga + abstracción en Arma: la versión de 5 parámetros reutiliza la abstracta</div>
+  <div class="code-body"><pre class="ln">39
+40
+41
+42
+43
+44
+45</pre><pre class="src"><span class="k">public</span> <span class="t">List</span>&lt;<span class="t">Proyectil</span>&gt; atacar(<span class="k">double</span> xOrigen, <span class="k">double</span> yOrigen, <span class="k">double</span> angulo, <span class="k">double</span> potencia, <span class="k">boolean</span> faccionJugador) {
+    <span class="t">List</span>&lt;<span class="t">Proyectil</span>&gt; lista = atacar(xOrigen, yOrigen, angulo, potencia);
+    <span class="k">for</span> (<span class="t">Proyectil</span> p : lista) {
+        p.setFaccionJugador(faccionJugador);
+    }
+    <span class="k">return</span> lista;
+}</pre></div>
+  
+</figure>
+  <h2>4.5 Composición fuerte — <code>Batallon *-- MiembroEscuadron</code></h2>
+  <div class="card red"><p><b>Qué es:</b> la parte no puede existir sin el todo. <code>MiembroEscuadron</code> es una clase
+  <code>private static final</code> <b>anidada</b> en <code>Batallon</code>: ningún otro archivo puede ni nombrarla. Los 4 miembros se crean en
+  <code>inicializarMiembros()</code> (dentro del constructor) y desaparecen en <code>destruirBatallon()</code>.</p></div>
+  <figure class="fig chart"><img src="graficos/g3_composicion.svg" alt="Composición"><figcaption>Gráfico 3 — La vida global (320 HP) gobierna cuántos miembros siguen en pie: umbrales 75 % (240), 50 % (160), 25 % (80) y 0 %.</figcaption></figure>
+  <div class="grid2"><figure class="code">
+  <figcaption><span class="file">entidades/Batallon.java</span><span class="lines">líneas 26–45</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/Batallon.java#L26-L45">ver en GitHub ↗</a></figcaption>
+  <div class="code-title">La parte (privada)</div>
+  <div class="code-body"><pre class="ln">26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45</pre><pre class="src"><span class="k">private</span> <span class="k">static</span> <span class="k">final</span> <span class="k">class</span> <span class="t">MiembroEscuadron</span> {
+    <span class="k">final</span> <span class="k">double</span> offsetX;
+    <span class="k">final</span> <span class="k">double</span> offsetY;
+    <span class="k">final</span> <span class="t">Color</span> colorChaqueta;
+    <span class="k">final</span> <span class="k">boolean</span> usaCasco;
+    <span class="k">final</span> <span class="k">boolean</span> usaSombrero;
+    <span class="k">boolean</span> vivo = <span class="k">true</span>;
+    <span class="k">double</span> progresoCaida = <span class="n">0.0</span>;
+    <span class="k">double</span> fase;
+
+    <span class="t">MiembroEscuadron</span>(<span class="k">double</span> offsetX, <span class="k">double</span> offsetY, <span class="t">Color</span> colorChaqueta,
+                     <span class="k">boolean</span> usaCasco, <span class="k">boolean</span> usaSombrero, <span class="k">double</span> fase) {
+        <span class="k">this</span>.offsetX = offsetX;
+        <span class="k">this</span>.offsetY = offsetY;
+        <span class="k">this</span>.colorChaqueta = colorChaqueta;
+        <span class="k">this</span>.usaCasco = usaCasco;
+        <span class="k">this</span>.usaSombrero = usaSombrero;
+        <span class="k">this</span>.fase = fase;
+    }
+}</pre></div>
+  
+</figure><figure class="code">
+  <figcaption><span class="file">entidades/Batallon.java</span><span class="lines">líneas 92–101</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/Batallon.java#L92-L101">ver en GitHub ↗</a></figcaption>
+  <div class="code-title">El todo decide quién vive</div>
+  <div class="code-body"><pre class="ln">92
+93
+94
+95
+96
+97
+98
+99
+100
+101</pre><pre class="src"><span class="k">private</span> <span class="k">void</span> actualizarMiembrosSegunVida() {
+    <span class="k">double</span> pct = (<span class="k">double</span>) vida / (<span class="k">double</span>) vidaMaxima;
+    <span class="k">int</span> vivosObjetivo = (vida &lt;= <span class="n">0</span>) ? <span class="n">0</span> : (<span class="k">int</span>) <span class="t">Math</span>.ceil(pct * totalMiembros);
+    vivosObjetivo = <span class="t">Math</span>.max(<span class="n">0</span>, <span class="t">Math</span>.min(miembros.size(), vivosObjetivo));
+
+    <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; miembros.size(); i++) {
+        <span class="k">int</span> ordenSupervivencia = esJugador ? i : (miembros.size() - <span class="n">1</span> - i);
+        miembros.get(i).vivo = (ordenSupervivencia &lt; vivosObjetivo);
+    }
+}</pre></div>
+  
+</figure></div>
+  <figure class="code">
+  <figcaption><span class="file">entidades/Batallon.java</span><span class="lines">líneas 103–107</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/entidades/Batallon.java#L103-L107">ver en GitHub ↗</a></figcaption>
+  
+  <div class="code-body"><pre class="ln">103
+104
+105
+106
+107</pre><pre class="src"><span class="k">public</span> <span class="k">void</span> destruirBatallon() {
+    <span class="k">this</span>.vida = <span class="n">0</span>;
+    <span class="k">this</span>.activo = <span class="k">false</span>;
+    <span class="k">this</span>.miembros.clear();
+}</pre></div>
+  
+</figure>
+  <h2>4.6 Agregación débil — <code>Inventario</code></h2>
+  <div class="card orange"><p><b>Qué es:</b> el todo usa a la parte, pero la parte vive por su cuenta. <code>inventarioCompartido</code> nace en
+  <code>WalkingBowmastersPOO</code> y se <b>inyecta</b> por constructor en los 3 modos. Si un personaje muere o cambias de Modo 1 → 2 → 3, el
+  inventario (4 armas + suministros + botín) sigue intacto. Incluso puede ser saqueado: <code>robarSuministroAleatorio(rng)</code>.</p></div>
+  <figure class="code">
+  <figcaption><span class="file">WalkingBowmastersPOO.java</span><span class="lines">líneas 65–78</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/WalkingBowmastersPOO.java#L65-L78">ver en GitHub ↗</a></figcaption>
+  <div class="code-title">Un solo Inventario, tres modos</div>
+  <div class="code-body"><pre class="ln">65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78</pre><pre class="src"><span class="k">public</span> <span class="t">WalkingBowmastersPOO</span>() {
+    setPreferredSize(<span class="k">new</span> <span class="t">Dimension</span>(<span class="t">ConstantesJuego</span>.<span class="t">ANCHO_VIRTUAL</span>, <span class="t">ConstantesJuego</span>.<span class="t">ALTO_VIRTUAL</span>));
+    setBackground(<span class="t">Color</span>.<span class="t">BLACK</span>);
+    setFocusable(<span class="k">true</span>);
+    setDoubleBuffered(<span class="k">true</span>);
+
+    modoHordas = <span class="k">new</span> <span class="t">ModoSupervivenciaHordas</span>(inventarioCompartido, escenario);
+    modoDuelo = <span class="k">new</span> <span class="t">ModoDueloBatallones</span>(inventarioCompartido, escenario);
+    modoArmeria = <span class="k">new</span> <span class="t">ModoArmeriaCampoTiro</span>(inventarioCompartido, escenario);
+
+    configurarEntradas();
+    <span class="t">Timer</span> loop = <span class="k">new</span> <span class="t">Timer</span>(<span class="n">16</span>, <span class="k">this</span>);
+    loop.start();
+}</pre></div>
+  
+</figure>
+  <figure class="code">
+  <figcaption><span class="file">inventario/Inventario.java</span><span class="lines">líneas 88–98</span>
+  <a href="https://github.com/JOHN-RAVEN-CROWNSON-2008/ProyectoLogicaDeProgramacion-II/blob/main/inventario/Inventario.java#L88-L98">ver en GitHub ↗</a></figcaption>
+  
+  <div class="code-body"><pre class="ln">88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre><pre class="src"><span class="k">public</span> <span class="t">String</span> robarSuministroAleatorio(<span class="t">Random</span> rng) {
+    <span class="t">List</span>&lt;<span class="t">Suministro</span>&gt; disponibles = <span class="k">new</span> <span class="t">ArrayList</span>&lt;<span class="t">Suministro</span>&gt;();
+    <span class="k">for</span> (<span class="t">Suministro</span> s : suministros) {
+        <span class="k">if</span> (s.getCantidad() &gt; <span class="n">0</span>) disponibles.add(s);
+    }
+    <span class="k">if</span> (disponibles.isEmpty()) <span class="k">return</span> <span class="k">null</span>;
+    <span class="t">Suministro</span> elegido = disponibles.get(rng.nextInt(disponibles.size()));
+    elegido.consumirUno();
+    recursosAcumulados = <span class="t">Math</span>.max(<span class="n">0</span>, recursosAcumulados - <span class="n">15</span>);
+    <span class="k">return</span> elegido.getTipo().nombreLegible;
+}</pre></div>
+  
+</figure>
+  <table><tr><th></th><th>Composición (Batallon ◆ MiembroEscuadron)</th><th>Agregación (Combatiente ◇ Inventario)</th></tr>
+  <tr><td><b>¿Quién crea la parte?</b></td><td>El propio <code>Batallon</code> (<code>new MiembroEscuadron</code> en <code>inicializarMiembros</code>)</td><td>Un tercero (<code>WalkingBowmastersPOO</code> / <code>ModoDueloBatallones</code>)</td></tr>
+  <tr><td><b>¿Visibilidad?</b></td><td><code>private static final class</code></td><td><code>public class</code> en su propio paquete</td></tr>
+  <tr><td><b>¿Se comparte?</b></td><td>Nunca</td><td>Sí, entre 3 modos</td></tr>
+  <tr><td><b>¿Ciclo de vida?</b></td><td>Muere con el contenedor (<code>miembros.clear()</code>)</td><td>Sobrevive al combatiente y al cambio de modo</td></tr></table>
+</section>
+
+<section class="chapter" id="cap5">
+  <div class="chapter-head"><div class="num">Capítulo 5</div><h1>Kit audiovisual de exposición</h1>
+  <p>Guion para público general, storyboard minuto a minuto de la demo en vivo, banco de preguntas difíciles y checklist de ensayo.</p></div>
+  <h2>5.1 Guion nivel 1 — audiencia general (3 minutos)</h2>
+  <table><tr><th style="width:15%">Tiempo</th><th style="width:28%">Analogía visual</th><th>Qué decir</th></tr>
+  <tr><td>0:00 – 0:40</td><td>🎯 + 🧟 Bowmasters × The Walking Dead</td><td class="say">“Imaginen unir la puntería con trayectorias curvas de Bowmasters con el mundo de supervivencia de The Walking Dead. Todo lo que ven —edificios, explosiones, sonidos— lo dibuja y sintetiza el propio código en Java, sin imágenes ni audios externos.”</td></tr>
+  <tr><td>0:40 – 1:20</td><td>🎼 Director de orquesta</td><td class="say">“WalkingBowmastersPOO es el director: 60 veces por segundo escucha el teclado y el ratón y le dice al modo activo ‘actualízate’ y ‘dibújate’. No sabe qué modo es; sólo sabe que todos cumplen el mismo contrato.”</td></tr>
+  <tr><td>1:20 – 2:00</td><td>🎒 Mochila de campamento</td><td class="say">“El Inventario es una mochila compartida: 4 armas, botiquines, munición y botín. No pertenece a ningún personaje; por eso, si pasan del Modo 1 al 2 o al 3, la mochila los acompaña.”</td></tr>
+  <tr><td>2:00 – 2:40</td><td>🪖 Escuadrón como un solo equipo</td><td class="say">“En el duelo ven 4 soldados por bando, pero en el código son un solo objeto Batallon con una vida total. Al 75, 50 y 25 % va cayendo un soldado: los soldados no existen fuera de su escuadrón.”</td></tr>
+  <tr><td>2:40 – 3:00</td><td>🏹 Física real</td><td class="say">“Cada arma tiene su propia gravedad, y el viento empuja los proyectiles. La tecla X dispara al 5 % para un tiro corto o al 100 % para cruzar el mapa.”</td></tr></table>
+  <h2>5.2 Storyboard audiovisual de la demo en vivo (5 minutos)</h2>
+  <figure class="fig "><img src="storyboards/sb3_ui.png" alt="Mapa UI"><figcaption>Storyboard 3 — Mapa de navegación con las coordenadas reales de los Rectangle del código: menú con hover y cursor, barra superior [MENÚ | F1 | F2 | F3], selector [X: 5% | 100%], tarjetas [1-4] y [Q/E/R].</figcaption></figure>
+  <h3>Menú principal</h3><table class="sb"><tr><th>Qué mostrar / acción</th><th>Qué se escucha (GestorSonido)</th><th>Qué decir exactamente</th></tr><tr><td><span class="t">00:00 – 00:30</span>Ejecutar <code>java WalkingBowmastersPOO</code>. Pasar el cursor por las 3 tarjetas del menú.</td><td><code>hover</code> en cada tarjeta (barrido 680→920 Hz, 40 ms)</td><td class="say">“Todo lo que ven está dibujado con Graphics2D y cada sonido se sintetiza matemáticamente en memoria; no hay ni una imagen ni un .wav en el proyecto.”</td></tr><tr><td><span class="t">00:30 – 00:45</span>Pulsar <code>[M]</code> dos veces para mostrar el silencio y reactivar.</td><td>Silencio → <code>click</code> al reactivar</td><td class="say">“GestorSonido es una clase utilitaria con un booleano volatile; los efectos suenan en hilos aparte para no frenar los 60 FPS.”</td></tr></table>
+  <h3>Modo 1 — ModoSupervivenciaHordas</h3><table class="sb"><tr><th>Qué mostrar / acción</th><th>Qué se escucha (GestorSonido)</th><th>Qué decir exactamente</th></tr><tr><td><span class="t">00:45 – 01:15</span>Clic en la tarjeta Modo 1. Arrastrar y soltar con el Rifle <code>[1]</code> a un caminante.</td><td><code>click</code> → <code>disparo_rifle</code> → <code>impacto</code></td><td class="say">“El rifle es una subclase de Arma; su atacar() lanza una ráfaga de tres proyectiles. Esto es polimorfismo por sobreescritura.”</td></tr><tr><td><span class="t">01:15 – 01:40</span>Apuntar a la cabeza de un zombie y disparar con el Revólver <code>[3]</code>.</td><td><code>disparo_revolver</code> + texto ¡CRÍTICO!</td><td class="say">“Si la bala entra en el 32 % superior de la caja es headshot y se usa la sobrecarga de calcularDano con multiplicador crítico.”</td></tr><tr><td><span class="t">01:40 – 02:05</span>Cambiar a granadas <code>[2]</code>, lanzar al grupo; luego <code>[4]</code> Katana de cerca.</td><td><code>lanzagranadas</code> → <code>explosion</code> (pantalla tiembla) → <code>katana</code></td><td class="say">“La explosión aplica daño en área con radioExplosion 145 y activa el screen shake: un translate aleatorio que decae 38 píxeles por segundo.”</td></tr><tr><td><span class="t">02:05 – 02:20</span>Pulsar <code>[Q]</code> para curar.</td><td><code>suministro</code> (arpegio do-mi-sol)</td><td class="say">“Q consume un botiquín del Inventario compartido; Suministro.consumirUno() impide que la cantidad sea negativa: encapsulamiento.”</td></tr></table>
+  <h3>Modo 2 — ModoDueloBatallones</h3><table class="sb"><tr><th>Qué mostrar / acción</th><th>Qué se escucha (GestorSonido)</th><th>Qué decir exactamente</th></tr><tr><td><span class="t">02:20 – 02:40</span>Pulsar <code>F2</code>. Señalar el indicador de viento y usar <code>A/D</code> para panear.</td><td><code>click</code></td><td class="say">“Cambiamos de modo sin perder armas: el mismo Inventario fue inyectado en los tres modos. Eso es agregación débil.”</td></tr><tr><td><span class="t">02:40 – 03:10</span>Seleccionar 100 % en la barra, apuntar con el cursor y pulsar <code>X</code> con el LanzaGranadas.</td><td><code>lanzagranadas</code> → <code>explosion</code> / <code>impacto</code></td><td class="say">“La cámara sigue a la granada con interpolación lineal y el fondo se mueve por capas a distintas velocidades: parallax.”</td></tr><tr><td><span class="t">03:10 – 03:40</span>Esperar el turno de la IA y mostrar cómo cae un soldado aliado.</td><td>disparo de la IA → <code>impacto</code></td><td class="say">“Cada escuadrón es un solo objeto Batallon con 320 de vida; sus cuatro MiembroEscuadron son una clase privada interna: composición fuerte. Al bajar del 75 % cae uno.”</td></tr><tr><td><span class="t">03:40 – 04:00</span>(Si termina) mostrar FIN_DUELO y <code>ENTER</code>.</td><td><code>victoria</code> o <code>derrota</code></td><td class="say">“La IA simula 154 trayectorias antes de disparar y su error se reduce en cada turno: al sexto ya es casi perfecta.”</td></tr></table>
+  <h3>Modo 3 — ModoArmeriaCampoTiro</h3><table class="sb"><tr><th>Qué mostrar / acción</th><th>Qué se escucha (GestorSonido)</th><th>Qué decir exactamente</th></tr><tr><td><span class="t">04:00 – 04:20</span>Pulsar <code>F3</code>. Con <code>[C]</code> alternar 5 %; pulsar <code>X</code>; luego 100 % y <code>X</code>.</td><td>disparo del arma activa + <code>impacto</code> en el blanco</td><td class="say">“La misma fórmula de velocidad inicial con p = 0.05 da un tiro corto y con p = 1.0 uno largo; la guía punteada usa exactamente la misma ecuación.”</td></tr><tr><td><span class="t">04:20 – 04:40</span>Mantener <code>X</code> presionada y mostrar la barra de carga.</td><td>—</td><td class="say">“Tras 0.18 segundos la potencia sube de 5 a 100 % en 1.05 segundos.”</td></tr><tr><td><span class="t">04:40 – 05:00</span>Comprar un suministro con botín y volver al menú con <code>ESC</code>.</td><td><code>suministro</code> → <code>click</code></td><td class="say">“Cierre: cinco pilares visibles en cinco minutos —abstracción, encapsulamiento, herencia, polimorfismo y composición/agregación.”</td></tr></table>
+  <div class="card violet"><h4>Plan B si algo falla en vivo</h4><p>Sin audio en el equipo del aula: <code>reproducir()</code> captura la excepción y el juego sigue
+  (díganlo: “el audio está protegido con try/catch para equipos sin tarjeta de sonido”) y reproduzcan los <code>.wav</code> desde este dossier.
+  Si el modo duelo se alarga, <code>F3</code> lleva directo a la armería.</p></div>
+  <h2>5.3 Banco de 10 preguntas difíciles del profesor</h2>
+  <div class="q"><div class="qh"><span>P1</span>¿Dónde exactamente ocurre el polimorfismo dinámico y cómo lo demuestran?</div><div class="qa">En <code>Superviviente.disparar(...)</code> y <code>Batallon.dispararEnUnisono(...)</code>, que invocan <code>armaActual.atacar(...)</code> sobre una referencia de tipo <code>Arma</code>. La JVM despacha a <code>RifleAsalto.atacar</code>, <code>LanzaGranadas.atacar</code>, <code>Revolver.atacar</code> o <code>EspadaKatana.atacar</code> según el objeto real. Demostración: en el Modo 3 pulsar <code>1</code> y luego <code>2</code> y disparar con la misma tecla <code>X</code>: misma línea de código, comportamiento distinto.<div class="src">📁 entidades/Superviviente.java · disparar(); armas/*.java · atacar()</div></div></div><div class="q"><div class="qh"><span>P2</span>¿Cuál es la diferencia real entre composición y agregación en su código?</div><div class="qa">Composición: <code>MiembroEscuadron</code> es <code>private static final</code> dentro de <code>Batallon</code>, se crea en <code>inicializarMiembros()</code> y se elimina en <code>destruirBatallon()</code>; nadie fuera puede referenciarlo. Agregación: <code>Inventario</code> se crea en <code>WalkingBowmastersPOO</code> (<code>inventarioCompartido</code>) y se pasa por constructor a los 3 modos; sobrevive a la muerte del combatiente y al cambio de modo.<div class="src">📁 entidades/Batallon.java; WalkingBowmastersPOO.java · constructor</div></div></div><div class="q"><div class="qh"><span>P3</span>¿Por qué limitan dt a 0.05 en vez de usar el tiempo real?</div><div class="qa">Si el sistema operativo pausa el programa (por ejemplo 300 ms), un <code>dt</code> grande haría avanzar un proyectil cientos de píxeles en un solo paso y podría atravesar la hitbox sin detectar la colisión (<i>tunneling</i>). Con <code>Math.min(0.05, ...)</code> el paso máximo es de 50 ms: el juego se ralentiza un instante pero la física sigue siendo correcta.<div class="src">📁 WalkingBowmastersPOO.java · actionPerformed()</div></div></div><div class="q"><div class="qh"><span>P4</span>¿Cómo evitan que el sonido congele el juego a 60 FPS?</div><div class="qa"><code>GestorSonido.reproducir(clave)</code> no bloquea: envía un <code>Runnable</code> a un <code>ExecutorService</code> de hilos daemon. El hilo de Swing sólo hace <code>POOL.submit</code>. Además, <code>AtomicInteger VOCES_ACTIVAS</code> limita a <code>MAX_VOCES = 10</code>, y los sonidos ya están sintetizados en <code>CACHE</code> desde el bloque <code>static</code>.<div class="src">📁 audio/GestorSonido.java · reproducir(), POOL</div></div></div><div class="q"><div class="qh"><span>P5</span>¿Por qué usan interfaces y además clases abstractas? ¿No es redundante?</div><div class="qa">No. La interfaz define un <b>contrato sin estado</b> que pueden cumplir jerarquías distintas (<code>Renderizable</code> lo cumple <code>EntidadJuego</code>; <code>Atacable</code>, <code>Combatiente</code>). La clase abstracta <b>comparte estado y código</b> (<code>x</code>, <code>y</code>, <code>vida</code>, <code>calcularDano</code>, <code>dibujarBarraVida</code>). Java sólo permite heredar de una clase pero implementar muchas interfaces.<div class="src">📁 interfaces/*.java; entidades/EntidadJuego.java; entidades/Combatiente.java</div></div></div><div class="q"><div class="qh"><span>P6</span>¿La IA hace trampa? ¿Cómo apunta?</div><div class="qa">No conoce el resultado: simula. <code>simularTrayectoria(...)</code> reproduce la física (gravedad del arma, viento actual, obstáculos, suelo) con <code>dtSim = 0.02</code> durante 220 pasos para 154 combinaciones ángulo/potencia, elige la mejor y luego añade ruido <code>errorMaximo = max(0.015, 0.14 − (turnoIA − 1)·0.025)</code>. Por eso falla al principio y se vuelve letal hacia el turno 6 (ver Gráfico 2).<div class="src">📁 modos/ModoDueloBatallones.java · ejecutarDisparoIA(), simularTrayectoria()</div></div></div><div class="q"><div class="qh"><span>P7</span>Si agrando la ventana, ¿por qué el clic sigue cayendo en el botón correcto?</div><div class="qa">Porque todo se dibuja en un lienzo virtual de 1280×720 escalado con <code>escala = min(w/1280, h/720)</code> y centrado con <code>offX/offY</code>. <code>mapearAMundoVirtual(MouseEvent e)</code> aplica la transformación inversa <code>(e.getX() − offX) / escala</code>, así los rectángulos como <code>btnMenuModo1 = new Rectangle(380, 248, 520, 74)</code> se comparan siempre en coordenadas virtuales.<div class="src">📁 WalkingBowmastersPOO.java · mapearAMundoVirtual(), paintComponent()</div></div></div><div class="q"><div class="qh"><span>P8</span>¿Hay dependencias circulares entre paquetes?</div><div class="qa">Sí, y conviene reconocerlo: <b>armas ↔ entidades ↔ inventario</b>. <code>Arma.atacar</code> crea <code>entidades.Proyectil</code> y <code>Combatiente</code> referencia <code>armas.Arma</code>. Java lo compila porque resuelve todos los tipos juntos, pero acopla los paquetes. Solución propuesta: mover <code>Proyectil</code> y <code>TipoProyectil</code> a un paquete <code>balistica</code> (o que <code>Arma</code> reciba una fábrica/interfaz), de modo que <code>armas</code> y <code>entidades</code> dependan de él y no entre sí.<div class="src">📁 Grafo generado automáticamente en el Capítulo 1.3</div></div></div><div class="q"><div class="qh"><span>P9</span>¿Por qué usan Iterator.remove() al recorrer listas de proyectiles y partículas?</div><div class="qa">Porque eliminar con <code>lista.remove(x)</code> dentro de un <code>for-each</code> lanza <code>ConcurrentModificationException</code>. <code>Iterator.remove()</code> es la única forma segura de quitar el elemento actual durante el recorrido (p. ej. <code>if (!it.next().actualizar(dt)) it.remove();</code>).<div class="src">📁 modos/BaseModoJuego.java · actualizarEfectos(); modos/ModoArmeriaCampoTiro.java</div></div></div><div class="q"><div class="qh"><span>P10</span>¿Qué hace exactamente la tecla X al 5 % y al 100 %?</div><div class="qa">Dispara hacia el cursor con la potencia preseleccionada por <code>getPotenciaPresetX()</code> (<code>potenciaXAl100 ? 1.00 : 0.05</code>); <code>[C]</code> o los botones 5 %/100 % la alternan. Si se mantiene presionada, tras 0.18 s carga de 0.05 a 1.00 en 1.05 s (<code>potenciaCargaX</code>). La potencia entra a <code>calcularVelocidadInicial</code>, que la limita con <code>ConstantesJuego.limitar(potencia, 0.05, 1.0)</code>.<div class="src">📁 modos/BaseModoJuego.java; armas/Arma.java · calcularVelocidadInicial()</div></div></div>
+  <h2>5.4 Checklist de ensayo pre-exposición</h2>
+  <div class="grid2">
+  <div><h4>Técnico (la noche anterior)</h4><ul class="check">
+   <li>Compilar desde la raíz: <code>javac WalkingBowmastersPOO.java armas/*.java audio/*.java efectos/*.java entidades/*.java escenario/*.java interfaces/*.java inventario/*.java modos/*.java util/*.java</code></li>
+   <li>Ejecutar: <code>java WalkingBowmastersPOO</code> sin errores en consola</li>
+   <li>Sonido: hover del menú audible; <code>[M]</code> silencia y reactiva</li>
+   <li>Tecla <code>X</code> al <b>5 %</b>: tiro corto visible en el Modo 3</li>
+   <li>Tecla <code>X</code> al <b>100 %</b>: tiro largo; <code>[C]</code> alterna; mantener <code>X</code> carga</li>
+   <li>Acceso a Modo 1, 2 y 3 por clic, por <code>1/2/3</code> y por <code>F1/F2/F3</code></li>
+   <li>Redimensionar la ventana y comprobar que el clic sigue acertando</li>
+   <li>Proyector a 1280×720 o superior; volumen del aula probado</li></ul></div>
+  <div><h4>Exposición (el día)</h4><ul class="check">
+   <li>Tener abiertos en el IDE: <code>Arma.java</code>, <code>Batallon.java</code>, <code>Combatiente.java</code>, <code>WalkingBowmastersPOO.java</code></li>
+   <li>Ensayar el guion de 3 min con cronómetro (máx. 3:15)</li>
+   <li>Ensayar la demo de 5 min siguiendo el storyboard</li>
+   <li>Repartir roles: narrador / operador del teclado / respuesta a preguntas</li>
+   <li>Cada expositor responde en voz alta al menos 3 preguntas del banco</li>
+   <li>Saber señalar en el diagrama UML: interfaz, abstracta, composición, agregación</li>
+   <li>Escuchar <code>00_todos_los_efectos_en_orden.wav</code> e identificar los 11 sonidos</li>
+   <li>Repositorio accesible por el QR de la portada</li></ul></div>
+  </div>
+  <div class="card dark" style="margin-top:6mm"><h3>Frase de cierre</h3><p>“The Walking Bowmasters demuestra que la POO no es teoría: cada pilar tiene un lugar exacto en el código,
+  y gracias a esa arquitectura pudimos añadir tres modos, cuatro armas y once sonidos sin reescribir el motor.”</p></div>
+</section>
+
+<script src="vendor/mermaid.min.js"></script>
+<script>
+window.__mermaidErrores = []; window.__mermaidListo = false;
+(async () => {
+  mermaid.initialize({ startOnLoad:false, securityLevel:'loose', theme:'base',
+    fontFamily:'Inter, Segoe UI, sans-serif',
+    themeVariables:{ primaryColor:'#f4f3ef', primaryBorderColor:'#3d3c39', primaryTextColor:'#0b0b0b', lineColor:'#52514e',
+      secondaryColor:'#e8f0fb', tertiaryColor:'#fdf0e9', fontSize:'13px', clusterBkg:'#fbfaf7', clusterBorder:'#cfcdc6' },
+    flowchart:{ htmlLabels:true, curve:'basis', padding:10 }, class:{ htmlLabels:false }, maxTextSize: 200000 });
+  await document.fonts.ready;
+  let n = 0;
+  for (const box of document.querySelectorAll('.mermaid-box')) {
+    const src = box.querySelector('.mermaid-src').textContent;
+    try { const r = await mermaid.render('mmd' + (n++), src); box.innerHTML = r.svg; }
+    catch (e) { window.__mermaidErrores.push(box.dataset.nombre + ': ' + e.message); }
+  }
+  window.__mermaidListo = true;
+})();
+</script></body></html>
